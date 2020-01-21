@@ -21,4 +21,12 @@
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
 
+    <build>
+	<sourceDirectory>./src/main/</sourceDirectory>
+	<outputDirectory>./target/classes</outputDirectory>
+	<directory>./target</directory>
+	<testSourceDirectory>./src/test/</testSourceDirectory>
+	<testOutputDirectory>./target/test-classes</testOutputDirectory>
+    </build>
+
 </project>
