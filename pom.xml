@@ -22,11 +22,27 @@
     </properties>
 
     <build>
-	<sourceDirectory>./src/main/</sourceDirectory>
-	<outputDirectory>./target/classes</outputDirectory>
-	<directory>./target</directory>
-	<testSourceDirectory>./src/test/</testSourceDirectory>
-	<testOutputDirectory>./target/test-classes</testOutputDirectory>
+        <sourceDirectory>./src/main/</sourceDirectory>
+        <outputDirectory>./target/classes</outputDirectory>
+        <directory>./target</directory>
+        <testSourceDirectory>./src/test/</testSourceDirectory>
+        <testOutputDirectory>./target/test-classes</testOutputDirectory>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>cobertura-maven-plugin</artifactId>
+                    <version>2.7</version>
+                    <configuration>
+                        <formats>
+                            <format>html</format>
+                            <format>xml</format>
+                        </formats>
+                        <check />
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>

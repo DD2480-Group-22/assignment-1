@@ -1,12 +1,17 @@
-dist: xenial
+dist: trusty
 
 language: java
 
 jdk:
-  - openjdk12
+  - oraclejdk8
 
-script: mvn clean install
+script:
+  - mvn clean install
+  - "mvn cobertura:cobertura"
 
 notifications:
     email: false        # default notif method deactivated
     slack: group-22-corp:zytnrBUqQyk0xFZbW4eValQD
+    
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
