@@ -38,13 +38,6 @@
                             <format>html</format>
                             <format>xml</format>
                         </formats>
-                        <reportSets>
-                            <reportSet>
-                                <reports>
-                                    <report>cobertura</report>
-                                </reports>
-                            </reportSet>
-                        </reportSets>
                         <check />
                     </configuration>
                 </plugin>
