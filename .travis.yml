@@ -3,7 +3,7 @@ dist: xenial
 language: java
 
 jdk:
-  - openjdk10
+  - oraclejdk8
 
 script:
   - mvn clean install
