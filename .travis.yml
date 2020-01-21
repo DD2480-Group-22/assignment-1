@@ -1,13 +1,13 @@
-dist: xenial
+dist: trusty
 
 language: java
 
 jdk:
-  - openjdk10
+  - oraclejdk8
 
 script:
   - mvn clean install
-  - mvn "cobertura:cobertura"
+  - "mvn cobertura:cobertura"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
