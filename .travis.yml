@@ -11,7 +11,15 @@ script:
 
 notifications:
     email: false        # default notif method deactivated
-    slack: group-22-corp:zytnrBUqQyk0xFZbW4eValQD
+    slack: 
+        - group-22-corp:zytnrBUqQyk0xFZbW4eValQD
+        on_success: always  
+        on_failure: always
+
+        template:
+                - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
+                - "Execution time: *%{duration}*"
+                - "Message: %{message}"
     
 after_success:
   - bash <(curl -s https://codecov.io/bash)
