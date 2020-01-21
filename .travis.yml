@@ -6,3 +6,7 @@ jdk:
   - openjdk12
 
 script: mvn clean install
+
+notifications:
+    email: false        # default notif method deactivated
+    slack: group-22-corp:zytnrBUqQyk0xFZbW4eValQD
