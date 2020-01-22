@@ -24,3 +24,9 @@ hs_err_pid*
 
 # Other
 .idea
+/target/
+
+#Eclipse auto-generated files
+.classpath
+.project
+*core.prefs
