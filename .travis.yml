@@ -14,6 +14,16 @@ notifications:
   slack:
     rooms:
       secure: ehKOA70Ml3ScjPUZFxTNViRwPtMHJ8iWwhoauRypq/lJWMA0cioEsZ3Wedfj7QwF+K1553ZCFSZXEPOir7NLCYNHqZgB7Yfy5FoRJPRALdtRYkdh1NF924BJYZvsNVR9mn5BfO6sBkzSpijLqd2P0aIGAc6DR7evT7J47U7EeFaR0jzZlQEyAbKrKQVkG4tH4yvOPZLB69nGoVL8h3bjeHummGumOdJlEowvVtEePZPuUdIsFdEZRV/C2BkA0X8qundqhWm/FMEqLRRh7peWsenvM7Usz/ZQImM6lMIbNSawDOnqfRGhFUpfa1GPYDCiv9rQaHWY6gSmPQDLOyOmWAFONc+AV/5Ae21jLlVw04Y4hIWEsyp37KYelUluhbGeuXBxsyiaXLuJFEzCeRiFfaGLpgQQFpVnmDQlN1QYVlASY0ypI3EsPtdKVF0hUmcnMMIsMfTzdLJJC5TQ9E8qxJoQ0xtXs5NMsW2eD44XIU2w+jZc1JOWX9fHF6W/ZZLNHnzpP3D7iEfRQtGhM2/yhcETMKGxahdYTU9IrLIYso6t0y9UpECedvFNWS4ny7VdGfKLR5iuGFujiByxV90FmwwmxMJIN+95HdycTp31DEGxiEptXjPwzM2YytOb+FVEiV76DhyyyN0UK9q6SK8oeBfVTCcoz16sU/sf2lhkkbg=
+   
+    on_success: always
+    on_failure: always
+
+    template:
+            - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
+            - "Execution time: *%{duration}*"
+            - "Message: %{message}"
+
+
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
