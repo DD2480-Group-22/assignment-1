@@ -29,4 +29,5 @@ hs_err_pid*
 #Eclipse auto-generated files
 .classpath
 .project
-*core.prefs
+*.core.prefs
+*.core.resources.prefs
