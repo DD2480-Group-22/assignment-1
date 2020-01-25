@@ -69,7 +69,11 @@ public class IOHandler {
             boolean[] puv = new boolean[15];
 
             for (int i = 0; i < 15; i++) {
-                puv[i] = Boolean.getBoolean(bufferedReader.readLine());
+                String booleanValue = bufferedReader.readLine();
+                if (!(booleanValue.equals("true") || booleanValue.equals("false")))
+                    throw new IllegalArgumentException("The values in the Preliminary Unlocking Vector has to be " +
+                            "either true or false");
+                puv[i] = Boolean.parseBoolean(booleanValue);
             }
 
             return new DecideProgram(nrPoints, points, new Parameters(paramsDouble, paramsInt), connectors, puv);
