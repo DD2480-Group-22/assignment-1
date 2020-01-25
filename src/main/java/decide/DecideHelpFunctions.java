@@ -4,7 +4,7 @@ public class DecideHelpFunctions {
 	
 	// Equal, Lesser, Greater
 	// Return 1 if a > b, 0 if a = b, -1 if a < b
-	private int elg(double a, double b) {
+	private static int elg(double a, double b) {
 		double diff = a-b;
 		
 		if(Math.abs(diff) < 0.000001) {
@@ -17,7 +17,7 @@ public class DecideHelpFunctions {
 	}
 	
 	// Calculates the distance between two 2D coordinates
-	private double distance(double[] c1, double[] c2) {
+	private static double distance(double[] c1, double[] c2) {
 		double x_diff = c1[0] - c2[0];
 		double y_diff = c1[1] - c2[1];
 		
@@ -32,7 +32,9 @@ public class DecideHelpFunctions {
 	 * @param coordinates : The coordinates being measured
 	 * @return			  : True if two consecutive coordinates are at at least the minimum distance, else false
 	 */
-    public boolean conditionFunctionZero(double length, double[][] coordinates) {
+    public static boolean conditionFunctionZero(double length, double[][] coordinates) {
+    	if(coordinates.length < 2) return false;
+    	
     	for(int i = 0; i < coordinates.length-1; ++i) {
     		double dist = distance(coordinates[i], coordinates[i+1]);
     		if(elg(dist, length) >= 0) {
