@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DecideHelpFunctionsTest {
 
-    @BeforeEach
-    void setUp() {
-    }
-    
-    @Nested
+	@BeforeEach
+	void setUp() {
+	}
+
+	@Nested
     @DisplayName("Tests of condition function zero")
     class ConditionFunctionZeroTests {
         @Test
@@ -93,61 +93,144 @@ class DecideHelpFunctionsTest {
         	assertFalse( DecideHelpFunctions.conditionFunctionZero(Math.sqrt(2)+0.1, coord) );
         	assertFalse( DecideHelpFunctions.conditionFunctionZero(2.0, coord) );
         }
+	}
+        
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function one")
+    class conditionFunctionOneTests {
+
     }
 
-    @Test
-    void conditionFunctionOne() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function two")
+    class conditionFunctionTwoTests {
+
     }
 
-    @Test
-    void conditionFunctionTwo() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function three")
+    class conditionFunctionThreeTests {
+
     }
 
-    @Test
-    void conditionFunctionThree() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function four")
+    class conditionFunctionFourTests {
+
     }
 
-    @Test
-    void conditionFunctionFour() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function five")
+    class conditionFunctionFiveTests {
+
     }
 
-    @Test
-    void conditionFunctionFive() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function six")
+    class conditionFunctionSixTests {
+
     }
 
-    @Test
-    void conditionFunctionSix() {
+    @Nested
+    @DisplayName("Tests of the seventh condition function")
+    class ConditionFunctionSevenTests {
+        @Test
+        @DisplayName("Test function with input that should evaluate to true, evan kPts")
+        void correctInputEvan() {
+            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {2.0, 0.0}};
+            assertTrue(DecideHelpFunctions.conditionFunctionSeven(2, 1.0, array));
+        }
+
+        @Test
+        @DisplayName("Test function with input that should evaluate to true, odd kPts")
+        void correctInputOdd() {
+            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {2.0, 0.0}};
+            assertTrue(DecideHelpFunctions.conditionFunctionSeven(3, 1.0, array));
+        }
+
+        @Test
+        @DisplayName("Test function with large array that should evaluate to true")
+        void correctInputLongArray() {
+            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0},
+                    {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0},
+                    {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {2.0, 0.0}};
+            assertTrue(DecideHelpFunctions.conditionFunctionSeven(2, 1.0, array));
+        }
+
+        @Test
+        @DisplayName("Not enough data points")
+        void notEnoughPoints() {
+            double[][] array = {{0.0, 0.0}, {0.0, 0.0}};
+            assertFalse(DecideHelpFunctions.conditionFunctionSeven(2, 1.0, array));
+        }
+
+        @Test
+        @DisplayName("To short distance between points")
+        void incorrectDistance() {
+            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {7, 0}};
+            assertFalse(DecideHelpFunctions.conditionFunctionSeven(2, 7.0, array));
+        }
+
+        @Test
+        @DisplayName("Incorrect spacing between points")
+        void incorrectSpacing() {
+            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {7, 0}};
+            assertFalse(DecideHelpFunctions.conditionFunctionSeven(3, 7.0, array));
+        }
+   }
+
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function eight")
+    class conditionFunctionEightTests {
+
     }
 
-    @Test
-    void conditionFunctionSeven() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function nine")
+    class conditionFunctionNineTests {
+
     }
 
-    @Test
-    void conditionFunctionEight() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function ten")
+    class conditionFunctionTenTests {
+
     }
 
-    @Test
-    void conditionFunctionNine() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function eleven")
+    class conditionFunctionElevenTests {
+
     }
 
-    @Test
-    void conditionFunctionTen() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function twelve")
+    class conditionFunctionTwelveTests {
+
     }
 
-    @Test
-    void conditionFunctionEleven() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function thirteen")
+    class conditionFunctionThirteenTests {
+
     }
 
-    @Test
-    void conditionFunctionTwelve() {
-    }
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function fourteen")
+    class conditionFunctionFourteenTests {
 
-    @Test
-    void conditionFunctionThirteen() {
-    }
-
-    @Test
-    void conditionFunctionFourteen() {
     }
 }

@@ -77,8 +77,21 @@ public class DecideHelpFunctions {
         return true;
     }
 
-    public boolean conditionFunctionSeven(int kPts, double length, double[][] coordinates) {
-        return true;
+    /**
+     * Checks if there are at least one set of two data points separated by exactly {@code kPts} consecutive intervening
+     * points that are a distance greater than {@code length} apart from each other.
+     * @param kPts The number of consecutive intervening points between the pair
+     * @param length The distance between the data points
+     * @param coordinates The data points
+     * @return {@code true} if there exits at least two data points that meat the requirements, otherwise {@code false}
+     */
+    public static boolean conditionFunctionSeven(int kPts, double length, double[][] coordinates) {
+        if (coordinates.length < 3) return false;
+        for (int i = 0; i < coordinates.length && (i + kPts + 1) < coordinates.length; i++) {
+            if (Math.sqrt(Math.pow(coordinates[i][0] - coordinates[i + (kPts + 1)][0], 2) +
+                    Math.pow(coordinates[i][1] - coordinates[i + (kPts + 1)][1], 2)) > length) return true;
+        }
+        return false;
     }
 
     public boolean conditionFunctionEight(int aPts, int bPts, int nrPoints, double[][] coordinates) {
