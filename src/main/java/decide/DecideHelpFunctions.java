@@ -2,8 +2,12 @@ package decide;
 
 public class DecideHelpFunctions {
 	
-	// Equal, Lesser, Greater
-	// Return 1 if a > b, 0 if a = b, -1 if a < b
+	/**
+	 * Checks two doubles to see if the first is to be considered equal, lesser or greater to another 
+	 * @param a : First double variable
+	 * @param b : Second double variable
+	 * @return : 1 if a > b, 0 if a = b, -1 if a < b
+	 */
 	private static int elg(double a, double b) {
 		double diff = a-b;
 		
@@ -16,7 +20,12 @@ public class DecideHelpFunctions {
 		return -1;
 	}
 	
-	// Calculates the distance between two 2D coordinates
+	/**
+	 * Calculates and adds the distance between two 2D coordinates
+	 * @param c1 : First coordinate
+	 * @param c2 : Second coordinate
+	 * @return : Distance between the two coordinates
+	 */
 	private static double distance(double[] c1, double[] c2) {
 		double x_diff = c1[0] - c2[0];
 		double y_diff = c1[1] - c2[1];
