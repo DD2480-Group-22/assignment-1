@@ -7,36 +7,53 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DecideHelpFunctionsTest {
 
-    @BeforeEach
-    void setUp() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function zero")
+    class conditionFunctionZeroTests {
+
     }
 
-    @Test
-    void conditionFunctionZero() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function one")
+    class conditionFunctionOneTests {
+
     }
 
-    @Test
-    void conditionFunctionOne() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function two")
+    class conditionFunctionTwoTests {
+
     }
 
-    @Test
-    void conditionFunctionTwo() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function three")
+    class conditionFunctionThreeTests {
+
     }
 
-    @Test
-    void conditionFunctionThree() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function four")
+    class conditionFunctionFourTests {
+
     }
 
-    @Test
-    void conditionFunctionFour() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function five")
+    class conditionFunctionFiveTests {
+
     }
 
-    @Test
-    void conditionFunctionFive() {
-    }
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function six")
+    class conditionFunctionSixTests {
 
-    @Test
-    void conditionFunctionSix() {
     }
 
     @Nested
@@ -87,31 +104,52 @@ class DecideHelpFunctionsTest {
         }
    }
 
-    @Test
-    void conditionFunctionEight() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function eight")
+    class conditionFunctionEightTests {
+
     }
 
-    @Test
-    void conditionFunctionNine() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function nine")
+    class conditionFunctionNineTests {
+
     }
 
-    @Test
-    void conditionFunctionTen() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function ten")
+    class conditionFunctionTenTests {
+
     }
 
-    @Test
-    void conditionFunctionEleven() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function eleven")
+    class conditionFunctionElevenTests {
+
     }
 
-    @Test
-    void conditionFunctionTwelve() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function twelve")
+    class conditionFunctionTwelveTests {
+
     }
 
-    @Test
-    void conditionFunctionThirteen() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function thirteen")
+    class conditionFunctionThirteenTests {
+
     }
 
-    @Test
-    void conditionFunctionFourteen() {
+    @Disabled
+    @Nested
+    @DisplayName("Tests for the condition function fourteen")
+    class conditionFunctionFourteenTests {
+
     }
 }
