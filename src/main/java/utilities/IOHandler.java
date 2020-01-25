@@ -56,13 +56,7 @@ public class IOHandler {
                 String[] splitLine = line.split(" ");
 
                 for (int j = 0; j < splitLine.length; j++) {
-                    if (Connectors.ANDD.toString().equals(splitLine[j])) {
-                        connectors[i][j] = Connectors.ANDD;
-                    } else if (Connectors.ORR.toString().equals(splitLine[j])) {
-                        connectors[i][j] = Connectors.ORR;
-                    } else if (Connectors.NOTUSED.toString().equals(splitLine[j])) {
-                        connectors[i][j] = Connectors.NOTUSED;
-                    }
+                    connectors[i][j] = Connectors.valueOf(splitLine[j]);
                 }
             }
 
