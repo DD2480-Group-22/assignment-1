@@ -4,6 +4,7 @@ import decide.Connectors;
 import decide.DecideProgram;
 import decide.Parameters;
 
+import java.awt.geom.Point2D;
 import java.io.*;
 import java.net.URL;
 
@@ -23,17 +24,17 @@ public class IOHandler {
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
 
             int nrPoints = Integer.parseInt(bufferedReader.readLine());
-            double[][] points = new double[nrPoints][2];
 
             if (nrPoints < 3) {
                 throw new IllegalArgumentException("There needs to be at least 3 coordinates");
             }
 
+            Point2D[] points = new Point2D[nrPoints];
+
             for (int i = 0; i < nrPoints; i++) {
                 String line = bufferedReader.readLine();
                 String[] coordinates = line.split(" ");
-                points[i][0] = Double.parseDouble(coordinates[0]);
-                points[i][1] = Double.parseDouble(coordinates[1]);
+                points[i] = new Point2D.Double(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1]));
             }
 
             double[] paramsDouble = new double[8];
