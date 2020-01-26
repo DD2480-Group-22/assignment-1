@@ -1,6 +1,7 @@
 package decide;
 
 import java.awt.geom.Point2D;
+import utilities.MathHelper;
 
 public class DecideHelpFunctions {
 
@@ -54,9 +55,30 @@ public class DecideHelpFunctions {
         return true;
     }
 
-    public boolean conditionFunctionNine(int cPts, int dPts, double epsilon, double[][] coordinates) {
-        return true;
+    /**
+     * Takes sets of 3 points, with {@code cPts} between the first and second, and {@code dPts} between the second and third points.
+     * Checks if there is a set of 3 points that form an angle that is either greater than (Pi + {@code epsilon}),
+     * or lower than (Pi - {@code epsilon}). The second point is always the vertex of the angle, and if two of the three poins are equal,
+     * the angle is undefined.
+     * @param cPts Points between the first and second point
+     * @param dPts Points between the second and third point
+     * @param nrPoints Number of data points
+     * @param epsilon Angle added and substracted from Pi
+     * @param coordinates The data points
+     * @return {@code true} if there exists a set of 3 points that meet the requirements, otherwise {@code false}
+     */
+    public static boolean conditionFunctionNine(int cPts, int dPts, int nrPoints, double epsilon, Point2D[] coordinates) {
+        if((cPts<0) || (dPts<0) || (nrPoints<(cPts + dPts + 3))) return false;
+        for (int i=0; i < (coordinates.length - cPts - dPts - 2); i++){
+            if(((Math.abs(Math.toRadians(MathHelper.getAngle(
+                coordinates[i+cPts+1], coordinates[i], coordinates[i+cPts+dPts+2])))) > (Math.PI + epsilon)) ||
+                ((Math.abs(Math.toRadians(MathHelper.getAngle(
+                coordinates[i+cPts+1], coordinates[i], coordinates[i+cPts+dPts+2])))) < (Math.PI - epsilon))) 
+                return true;
+        }
+        return false;
     }
+
 
     public boolean conditionFunctionTen(int ePts, int fPts, double area, double[][] coordinates) {
         return true;
