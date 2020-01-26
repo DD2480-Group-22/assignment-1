@@ -1,5 +1,4 @@
 package decide;
-import javafx.geometry.Point2D;
 
 public class Parameters {
     private double epsilon;

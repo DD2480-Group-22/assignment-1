@@ -1,5 +1,6 @@
 package decide;
-import javafx.geometry.Point2D;
+
+import java.awt.geom.Point2D;
 
 public class DecideHelpFunctions {
 
@@ -39,11 +40,12 @@ public class DecideHelpFunctions {
      * @param coordinates The data points
      * @return {@code true} if there exits at least two data points that meat the requirements, otherwise {@code false}
      */
-    public static boolean conditionFunctionSeven(int kPts, double length, double[][] coordinates) {
+    public static boolean conditionFunctionSeven(int kPts, double length, Point2D[] coordinates) {
         if (coordinates.length < 3) return false;
         for (int i = 0; i < coordinates.length && (i + kPts + 1) < coordinates.length; i++) {
-            if (Math.sqrt(Math.pow(coordinates[i][0] - coordinates[i + (kPts + 1)][0], 2) +
-                    Math.pow(coordinates[i][1] - coordinates[i + (kPts + 1)][1], 2)) > length) return true;
+            Point2D pointA = coordinates[i];
+            Point2D pointB = coordinates[i + (kPts + 1)];
+            if (pointA.distance(pointB) > length) return true;
         }
         return false;
     }

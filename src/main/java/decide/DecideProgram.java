@@ -1,9 +1,10 @@
 package decide;
-import javafx.geometry.Point2D;
+
+import java.awt.geom.Point2D;
 
 public class DecideProgram {
     private int numPoints;
-    private double[][] coordinates;
+    private Point2D[] coordinates;
     private Parameters parameters;
     private Connectors[][] logicalConnectorMatrix;
     private boolean[] preliminaryUnlockingVector;
@@ -16,7 +17,7 @@ public class DecideProgram {
      * @param lcm A logical connector matrix
      * @param puv The preliminary unlocking vector
      */
-    public DecideProgram(int numPoints, double[][] points, Parameters parameters, Connectors[][] lcm, boolean[] puv) {
+    public DecideProgram(int numPoints, Point2D[] points, Parameters parameters, Connectors[][] lcm, boolean[] puv) {
         this.numPoints = numPoints;
         this.coordinates = points;
         this.parameters = parameters;
