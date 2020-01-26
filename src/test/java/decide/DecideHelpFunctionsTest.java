@@ -211,6 +211,34 @@ class DecideHelpFunctionsTest {
     @Nested
     @DisplayName("Tests for the condition function eleven")
     class conditionFunctionElevenTests {
+        @Test
+        @DisplayName("Test function with input that should evaluate to true")
+        void correctInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(3.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(2.0, 0.0)
+            };
+            assertTrue(DecideHelpFunctions.conditionFunctionEleven(1, 4, array));
+        }
+
+        @Test
+        @DisplayName("Test function with input that should evaluate to false")
+        void incorrectInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(2.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionEleven(1, 4, array));
+        }
+
+        @Test
+        @DisplayName("Not enough data points")
+        void notEnoughPoints() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionEleven(1, 2, array));
+        }
 
     }
 
