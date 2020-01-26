@@ -38,4 +38,12 @@ public class DecideProgram {
     public boolean decide() {
         return true; //TODO implement the decide function
     }
+    
+    /**
+     * Getter for numPoints as it's needed in some functions for validation checks
+     * @return the number of points {@code numPoints}
+     */
+    public int getNumPoints() {
+    	return numPoints;
+    }
 }
