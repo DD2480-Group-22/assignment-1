@@ -50,9 +50,26 @@ public class DecideHelpFunctions {
         return false;
     }
 
-    public boolean conditionFunctionEight(int aPts, int bPts, int nrPoints, double[][] coordinates) {
-        return true;
+    /**
+     * Takes sets of 3 points, with {@code aPts} between the first and second, and {@code bPts} between the second and third points.
+     * For each set it checks if the 3 selected points can all be contained within a circle of radius {@code radius1}.
+     * @param aPts Points between the first and second point
+     * @param bPts Points between the second and third point
+     * @param nrPoints Number of data points
+     * @param radius1 Radius of the circle that has to contain all 3 points
+     * @param coordinates The data points
+     * @return {@code true} if there exists a set of 3 points that meet the requirements, otherwise {@code false}
+     */
+    public static boolean conditionFunctionEight(int aPts, int bPts, int nrPoints, double radius1, Point2D[] coordinates) {
+        if((aPts<0) || (bPts<0) || (nrPoints<(aPts + bPts + 3))) return false;
+        for (int i=0; i < (coordinates.length - aPts - bPts - 2); i++){
+            if(Math.max(Math.max(coordinates[i].distance(coordinates[i+aPts+1]), coordinates[i].distance(coordinates[i+aPts+bPts+2])),
+                coordinates[i+bPts+1].distance(coordinates[i+aPts+1]))> (2*radius1)) 
+                return true;
+        }
+        return false;
     }
+
 
     public boolean conditionFunctionNine(int cPts, int dPts, double epsilon, double[][] coordinates) {
         return true;
