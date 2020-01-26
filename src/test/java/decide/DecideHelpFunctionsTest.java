@@ -44,11 +44,37 @@ class DecideHelpFunctionsTest {
 
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function five")
     class conditionFunctionFiveTests {
+        @Test
+        @DisplayName("Test function with input that should evaluate to true")
+        void correctInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(3.0, 0.0), new Point2D.Double(2.0, 0.0)
+            };
+            assertTrue(DecideHelpFunctions.conditionFunctionFive(array));
+        }
 
+        @Test
+        @DisplayName("Test function with input that should evaluate to false")
+        void incorrectInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(2.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionFive(array));
+        }
+
+        @Test
+        @DisplayName("Not enough data points")
+        void notEnoughPoints() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionFive(array));
+        }
     }
 
     @Disabled
