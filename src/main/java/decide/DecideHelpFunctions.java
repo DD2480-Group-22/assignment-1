@@ -24,8 +24,17 @@ public class DecideHelpFunctions {
         return true;
     }
 
-    public boolean conditionFunctionFive(double[][] coordinates) {
-        return true;
+    /**
+     * Checks if there are at least one set of two consecutive data points with the second one having a lower X value than the first one.
+     * @param coordinates The data points
+     * @return {@code true} if there exits at least two data points that meat the requirements, otherwise {@code false}
+     */
+    public static boolean conditionFunctionFive(Point2D[] coordinates){
+        if(coordinates.length < 2) return false;
+        for (int i=0; i < (coordinates.length - 1); i++){
+            if(coordinates[i].getX() > coordinates[i+1].getX()) return true;
+        }
+        return false;
     }
 
     public boolean conditionFunctionSix(int nPts, double dist, double[][] coordinates) {
