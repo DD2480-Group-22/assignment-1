@@ -1,4 +1,5 @@
 package decide;
+import javafx.geometry.Point2D;
 
 public class DecideProgram {
     private int numPoints;
