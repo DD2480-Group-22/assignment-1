@@ -22,10 +22,35 @@ class DecideHelpFunctionsTest {
 
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function two")
     class conditionFunctionTwoTests {
+        @Test
+        @DisplayName("Test function with input that should evaluate to true")
+        void correctInput() {
+            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {1.0, 0.0}, {2.0, 1.0}};
+            Point2D[] points = new Point2D[5];
+            for (int i=0; i<array.length; i++) points[i] = new Point2D(array[i][0], array[i][1]);
+            assertTrue(DecideHelpFunctions.conditionFunctionTwo(0.1, points));
+        }
+
+        @Test
+        @DisplayName("Test function with input that should evaluate to false")
+        void incorrectInput() {
+            double[][] array = {{1.0, 0.0}, {0.0, 0.0}, {-1.0, 0.0}, {-1.0, 0.0}, {1.0, 0.0}};
+            Point2D[] points = new Point2D[5];
+            for (int i=0; i<array.length; i++) points[i] = new Point2D(array[i][0], array[i][1]);
+            assertFalse(DecideHelpFunctions.conditionFunctionTwo(0.1, points));
+        }
+
+        @Test
+        @DisplayName("Not enough data points")
+        void notEnoughPoints() {
+            double[][] array = {{1.0, 0.0}, {2.0, 1.0}};
+            Point2D[] points = new Point2D[2];
+            for (int i=0; i<array.length; i++) points[i] = new Point2D(array[i][0], array[i][1]);
+            assertFalse(DecideHelpFunctions.conditionFunctionTwo(0.1, points));
+        }
 
     }
 
