@@ -235,10 +235,23 @@ class DecideHelpFunctionsTest {
         @DisplayName("Not enough data points")
         void notEnoughPoints() {
             Point2D[] array = {
-                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0)
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(2.0, 0.0)
             };
-            assertFalse(DecideHelpFunctions.conditionFunctionEleven(1, 2, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionEleven(3, 2, array));
         }
+
+        @Test
+        @DisplayName("Invalid gPts")
+        void invalidGPTS() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(10.0, 0.0),
+                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0),
+                    new Point2D.Double(2.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionEleven(0, 5, array));
+        }
+
 
     }
 
