@@ -355,7 +355,39 @@ public class DecideHelpFunctions {
         return false;
     }
 
-    public boolean conditionFunctionFourteen(int ePts, int fPts, double area1, double area2, double[][] coordinates) {
-        return true;
+    public static boolean conditionFunctionFourteen(int ePts, int fPts, double area1, double area2, Point2D[] coordinates) {
+    	if(coordinates.length < 5) return false;
+    	
+    	boolean area1_condition = false;
+    	boolean area2_condition = false;
+    	
+    	// e_pts and f_pts for the interveing data points and 2 for the other data points in the triangle
+    	int l = coordinates.length - (ePts + fPts + 2); 
+    	for(int i = 0; i < l; ++i) {
+    		Point2D point1 = coordinates[i];
+    		Point2D point2 = coordinates[i+ePts+1];
+    		Point2D point3 = coordinates[i+ePts+fPts+2];
+    		
+    		// If two points are at the same location, then there is no triangle
+    		if(MathHelper.equalityCheckCoordinates(point1, point2) ||
+    				MathHelper.equalityCheckCoordinates(point1, point3) ||
+    				MathHelper.equalityCheckCoordinates(point2, point3) ) {
+    			continue;
+    		}
+    		
+    		double width = point1.distance(point2);
+    		double height = MathHelper.distanceToLine(point1, point2, point3);
+    		
+    		double triangle_area = width*height/2;
+    		
+    		if(triangle_area > area1 && !MathHelper.equal(triangle_area, area1)) {
+    			area1_condition = true;
+    		}
+    		if(triangle_area < area2 && !MathHelper.equal(triangle_area, area2)) {
+    			area2_condition = true;
+    		}    		
+    	}
+    	
+        return area1_condition && area2_condition;
     }
 }

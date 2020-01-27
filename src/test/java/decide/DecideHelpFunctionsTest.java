@@ -733,10 +733,20 @@ class DecideHelpFunctionsTest {
         }
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function fourteen")
     class conditionFunctionFourteenTests {
-
+    	@Test
+        @DisplayName("Basic test for three data points with only 1 point between each")
+        void notEnoughPoints() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(6.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(3.0, 3.0)
+            };
+            
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 4, 15, array));
+        }
     }
 }

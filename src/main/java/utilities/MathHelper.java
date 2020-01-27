@@ -85,7 +85,7 @@ public class MathHelper {
      * @return {@code true} : If the difference is less than EPSILON
      */
     public static boolean equal(double a, double b) {
-    	return (a-b) < EPSILON;
+    	return Math.abs(a-b) < EPSILON;
     }
 
 }
