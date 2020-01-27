@@ -207,7 +207,6 @@ class DecideHelpFunctionsTest {
 
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function eleven")
     class conditionFunctionElevenTests {
