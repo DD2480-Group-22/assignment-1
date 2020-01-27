@@ -3,98 +3,95 @@ package decide;
 import utilities.MathHelper;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
-
-import utilities.MathHelper;
-
 
 public class DecideHelpFunctions {
-	
+
 	/**
-	 * Takes an array of 2D coordinates and check if any two consecutive points are at a distance of length 
-	 * apart. Returns true if such a pair is found, false otherwise.
-	 * @param length		: The distance 
-	 * @param coordinates	: The array of coordinates
-	 * @return {@code true}	: If there exists two consecutive coordinates with distance greater than length.
-	 */
+     * Takes an array of 2D coordinates and check if any two consecutive points are at a distance of length
+     * apart. Returns true if such a pair is found, false otherwise.
+     *
+     * @param length      : The distance
+     * @param coordinates : The array of coordinates
+     * @return {@code true}	: If there exists two consecutive coordinates with distance greater than length.
+     */
     public static boolean conditionFunctionZero(double length, Point2D[] coordinates) {
     	for(int i = 0; i < coordinates.length-1; ++i) {
     		if(coordinates[i].distance(coordinates[i+1]) > length) return true;
     	}
         return false;
     }
-    
+
     /**
      * Takes an array of coordinates and a radius. Checks to see if three consecutive coordinates in the array
-     * cannot fit within a circle of the given radius. Returns true if the cannot fit, false otherwise. 
-     * @param radius		: The radius of the circle
-     * @param coordinates	: The array of coordinates
+     * cannot fit within a circle of the given radius. Returns true if the cannot fit, false otherwise.
+     * @param radius        : The radius of the circle
+     * @param coordinates    : The array of coordinates
      * @return {@code true} : If three consecutive coordinates cannot fit with a circle of given radius
      */
     public static boolean conditionFunctionOne(double radius, Point2D[] coordinates) {
     	if(coordinates.length < 3) return false;
-    	
-    	for(int i = 0; i < coordinates.length-2; ++i) {
-    		// Find the smallest possible circle
-    		// The smallest possible circle has either 2 or 3 points at the edge
-    		
-    		// If only 2 points are at the edge, then distance between them must 
-    		// be at least 2*radius in order to return true
-    		if( coordinates[i].distance(coordinates[i+1]) > radius*2 ||
-    			coordinates[i].distance(coordinates[i+2]) > radius*2 ||
-    			coordinates[i+1].distance(coordinates[i+2]) > radius*2 ) {
-    			return true;
+
+    	for(int i = 0; i < coordinates.length - 2; ++i) {
+            // Find the smallest possible circle
+            // The smallest possible circle has either 2 or 3 points at the edge
+
+            // If only 2 points are at the edge, then distance between them must
+            // be at least 2*radius in order to return true
+            if (coordinates[i].distance(coordinates[i + 1]) > radius * 2 ||
+                    coordinates[i].distance(coordinates[i + 2]) > radius * 2 ||
+                    coordinates[i + 1].distance(coordinates[i + 2]) > radius * 2) {
+                return true;
+            }
+
+            // If the smallest circle is supported by all three points,
+            // then a circle with given radius supported by two points with
+            // its center lying towards the third point should encompass all
+            Point2D point1 = coordinates[i];
+            Point2D point2 = coordinates[i + 1];
+            Point2D point3 = coordinates[i + 2];
+            double dist = coordinates[i].distance(coordinates[i + 1]);
+            if (dist < coordinates[i].distance(coordinates[i + 2])) {
+                point1 = coordinates[i];
+                point2 = coordinates[i + 2];
+                point3 = coordinates[i + 1];
+                dist = coordinates[i].distance(coordinates[i + 2]);
+            }
+            if (dist < coordinates[i + 1].distance(coordinates[i + 2])) {
+                point1 = coordinates[i + 1];
+                point2 = coordinates[i + 2];
+                point3 = coordinates[i];
     		}
-    		
-    		// If the smallest circle is supported by all three points, 
-    		// then a circle with given radius supported by two points with 
-    		// its center lying towards the third point should encompass all
-    		Point2D point1 = coordinates[i]; 
-    		Point2D point2 = coordinates[i+1];
-    		Point2D point3 = coordinates[i+2];
-    		double dist = coordinates[i].distance(coordinates[i+1]);
-    		if(dist < coordinates[i].distance(coordinates[i+2])) {
-    			point1 = coordinates[i]; 
-        		point2 = coordinates[i+2];
-        		point3 = coordinates[i+1];
-        		dist = coordinates[i].distance(coordinates[i+2]);
-    		}
-    		if(dist < coordinates[i+1].distance(coordinates[i+2])) {
-    			point1 = coordinates[i+1]; 
-        		point2 = coordinates[i+2];
-        		point3 = coordinates[i];
-    		}
-    		
+
     		Point2D mid_point = new Point2D.Double(
-    					( point1.getX()+point2.getX() )/2, 
-    					( point1.getY()+point2.getY() )/2
-    				);
-    		
-    		
-    		Point2D vector = new Point2D.Double(
-	    				-( point1.getY() - point2.getY() ), 
-						( point1.getX() - point2.getX() )
-					);
-    		
-    		//Normalize vector
-    		double d = Math.sqrt(vector.getX()*vector.getX() + vector.getY()*vector.getY());
-    		vector.setLocation(vector.getX()/d, vector.getY()/d);
-    		
-    		dist = Math.sqrt( Math.pow(radius, 2) - Math.pow(mid_point.distance(coordinates[i]),2) );   		
-    		
-    		
-    		Point2D center1 = new Point2D.Double(mid_point.getX() + vector.getX()*dist, 
-    				mid_point.getY() + vector.getY()*dist);
-    		
-    		Point2D center2 = new Point2D.Double(mid_point.getX() - vector.getX()*dist, 
-    				mid_point.getY() - vector.getY()*dist);
-    		
-    		Point2D center = center1;
-    		if(center1.distance(point3) > center2.distance(point3)) {
-    			center = center2;
-    		}
-    		
-    		if(	center.distance(point3) > radius) {
+                    (point1.getX() + point2.getX()) / 2,
+                    (point1.getY() + point2.getY()) / 2
+            );
+
+
+            Point2D vector = new Point2D.Double(
+                    -(point1.getY() - point2.getY()),
+                    (point1.getX() - point2.getX())
+            );
+
+            //Normalize vector
+            double d = Math.sqrt(vector.getX() * vector.getX() + vector.getY() * vector.getY());
+            vector.setLocation(vector.getX() / d, vector.getY() / d);
+
+            dist = Math.sqrt(Math.pow(radius, 2) - Math.pow(mid_point.distance(coordinates[i]), 2));
+
+
+            Point2D center1 = new Point2D.Double(mid_point.getX() + vector.getX() * dist,
+                    mid_point.getY() + vector.getY() * dist);
+
+            Point2D center2 = new Point2D.Double(mid_point.getX() - vector.getX() * dist,
+                    mid_point.getY() - vector.getY() * dist);
+
+            Point2D center = center1;
+            if (center1.distance(point3) > center2.distance(point3)) {
+                center = center2;
+            }
+
+            if (center.distance(point3) > radius) {
     			return true;
     		}
     	}
@@ -110,7 +107,7 @@ public class DecideHelpFunctions {
      * @return {@code true} if there exits at least three data points that meat the requirements, otherwise {@code false}
      */
     public static boolean conditionFunctionTwo(double epsilon, Point2D[] coordinates) {
-        if ((coordinates.length < 3) || (Math.abs(epsilon) > Math.PI)) return false; 
+        if ((coordinates.length < 3) || (Math.abs(epsilon) > Math.PI)) return false;
         for (int i = 1; i < (coordinates.length - 1); i++){
             if (!(coordinates[i].equals(coordinates[i-1]) && !(coordinates[i].equals(coordinates[i+1])))){
                 if ((Math.abs(Math.toRadians(MathHelper.getAngle(coordinates[i], coordinates[i-1], coordinates[i+1])))) > (Math.PI + epsilon) ||
@@ -198,9 +195,9 @@ public class DecideHelpFunctions {
      */
     public static boolean conditionFunctionEight(int aPts, int bPts, int nrPoints, double radius1, Point2D[] coordinates) {
         if((aPts<0) || (bPts<0) || (nrPoints<(aPts + bPts + 3))) return false;
-        for (int i=0; i < (coordinates.length - aPts - bPts - 2); i++){
-            if(Math.max(Math.max(coordinates[i].distance(coordinates[i+aPts+1]), coordinates[i].distance(coordinates[i+aPts+bPts+2])),
-                coordinates[i+bPts+1].distance(coordinates[i+aPts+1]))> (2*radius1)) 
+        for (int i=0; i < (coordinates.length - aPts - bPts - 2); i++) {
+            if (Math.max(Math.max(coordinates[i].distance(coordinates[i + aPts + 1]), coordinates[i].distance(coordinates[i + aPts + bPts + 2])),
+                    coordinates[i + bPts + 1].distance(coordinates[i + aPts + 1])) > (2 * radius1))
                 return true;
         }
         return false;
