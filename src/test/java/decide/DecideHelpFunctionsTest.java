@@ -9,12 +9,86 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DecideHelpFunctionsTest {
 
-    @Disabled
-    @Nested
-    @DisplayName("Tests for the condition function zero")
-    class conditionFunctionZeroTests {
+	@Nested
+    @DisplayName("Tests of condition function zero")
+    class ConditionFunctionZeroTests {
+        @Test
+        @DisplayName("Test function with on basic input of two coordinates")
+        void basicTwoCoordinates() {
+        	Point2D[] coord = {
+                    new Point2D.Double(1.0, 1.0), new Point2D.Double(0.0, 0.0)
+            };
+        	
+        	assertTrue( DecideHelpFunctions.conditionFunctionZero(1.0, coord) );
+        	assertTrue( DecideHelpFunctions.conditionFunctionZero(Math.sqrt(2)-0.1, coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(Math.sqrt(2), coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(2.0, coord) );
+        	
+        	coord[1].setLocation(-2.0, -3.0);
+        	
+        	assertTrue( DecideHelpFunctions.conditionFunctionZero(4, coord) );
+        	assertTrue( DecideHelpFunctions.conditionFunctionZero(4.99, coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(6, coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(5.01, coord) );
+        }
 
-    }
+        @Test
+        @DisplayName("Test function with input of 10 coordinates where only the last has any distance from the others")
+        void longArrayLastCoordinate() {
+        	Point2D[] coord = new Point2D[10];
+        	for(int i = 0; i < 10; ++i) {
+        		coord[i] = new Point2D.Double(0.0,0.0);
+        	}
+        	
+        	coord[9].setLocation(4.0, 3.0);
+        	
+        	
+        	
+        	assertTrue( DecideHelpFunctions.conditionFunctionZero(4, coord) );
+        	assertTrue( DecideHelpFunctions.conditionFunctionZero(4.99, coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(5.1, coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(6, coord) );
+        }
+
+        @Test
+        @DisplayName("Test function with only negative coordinates")
+        void negativeCoordinates() {
+        	Point2D[] coord = {
+        			new Point2D.Double(-1.0, -1.0), 
+        			new Point2D.Double(-1.0, -2.0),
+        			new Point2D.Double(-4.0, -6.0)
+        	};
+        	
+        	assertTrue( DecideHelpFunctions.conditionFunctionZero(4, coord) );
+        	assertTrue( DecideHelpFunctions.conditionFunctionZero(4.99, coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(5.1, coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(6, coord) );
+        }
+
+        @Test
+        @DisplayName("Not enough data points")
+        void notEnoughPoints() {
+        	Point2D[] coord = { new Point2D.Double(1.0, 1.0) };
+        	
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(1, coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(50, coord) );
+        }
+
+        @Test
+        @DisplayName("Test sequence of consecutive points with equal distance")
+        void longArrayEqualDistance() {
+        	Point2D[] coord = new Point2D[10];;
+        	
+        	for(int i = 0; i < 10; ++i) {
+        		coord[i] = new Point2D.Double(i, i);
+        	}
+        	
+        	assertTrue( DecideHelpFunctions.conditionFunctionZero(1, coord) );
+        	assertTrue( DecideHelpFunctions.conditionFunctionZero(1.2, coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(2, coord) );
+        	assertFalse( DecideHelpFunctions.conditionFunctionZero(Math.sqrt(2), coord) );
+        }
+	}
 
     @Disabled
     @Nested
