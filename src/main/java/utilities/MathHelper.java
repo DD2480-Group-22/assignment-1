@@ -77,5 +77,15 @@ public class MathHelper {
         return Math.abs(pointA.getX() - pointB.getX()) < EPSILON &&
                 Math.abs(pointA.getY() - pointB.getY()) < EPSILON;
     }
+    
+    /**
+     * Checks if the difference between two floating point numbers are less than EPSILON 
+     * @param a : First floating point number
+     * @param b : Second floating point number
+     * @return {@code true} : If the difference is less than EPSILON
+     */
+    public static boolean equal(double a, double b) {
+    	return (a-b) < EPSILON;
+    }
 
 }

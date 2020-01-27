@@ -120,8 +120,32 @@ public class DecideHelpFunctions {
     }
 
 
-    public boolean conditionFunctionThree(double area, double[][] coordinates) {
-        return true;
+    public static boolean conditionFunctionThree(double area, Point2D[] coordinates) {
+    	if(coordinates.length < 3) return false;
+    	for (int i = 0; i < (coordinates.length - 2); ++i) {
+    		// If two points are at the same location, then the area is 0
+    		if(MathHelper.equalityCheckCoordinates(coordinates[i], coordinates[i+1]) ||
+    				MathHelper.equalityCheckCoordinates(coordinates[i], coordinates[i+2]) ||
+    				MathHelper.equalityCheckCoordinates(coordinates[i+1], coordinates[i+2]) ) {
+    			continue;
+    		}
+    		
+    		double width = coordinates[i].distance(coordinates[i+1]);
+    		double height = MathHelper.distanceToLine(coordinates[i], coordinates[i+1], coordinates[i+2]);
+    		
+    		System.out.println("Width "+width);
+    		System.out.println("Height "+height);
+    		
+    		double triangle_area = width*height/2;
+    		
+    		System.out.println("Area "+triangle_area);
+    		
+    		if(triangle_area > area && !MathHelper.equal(triangle_area, area)) {
+    			return true;
+    		}
+    	}
+    	
+        return false;
     }
     
     /**
