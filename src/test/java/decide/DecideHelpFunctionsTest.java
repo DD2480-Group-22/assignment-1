@@ -2,6 +2,8 @@ package decide;
 
 import org.junit.jupiter.api.*;
 
+import java.awt.geom.Point2D;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -123,11 +125,37 @@ class DecideHelpFunctionsTest {
 
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function five")
     class conditionFunctionFiveTests {
+        @Test
+        @DisplayName("Test function with input that should evaluate to true")
+        void correctInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(3.0, 0.0), new Point2D.Double(2.0, 0.0)
+            };
+            assertTrue(DecideHelpFunctions.conditionFunctionFive(array));
+        }
 
+        @Test
+        @DisplayName("Test function with input that should evaluate to false")
+        void incorrectInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(2.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionFive(array));
+        }
+
+        @Test
+        @DisplayName("Not enough data points")
+        void notEnoughPoints() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionFive(array));
+        }
     }
 
     @Disabled
@@ -141,55 +169,109 @@ class DecideHelpFunctionsTest {
     @DisplayName("Tests of the seventh condition function")
     class ConditionFunctionSevenTests {
         @Test
-        @DisplayName("Test function with input that should evaluate to true, evan kPts")
-        void correctInputEvan() {
-            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {2.0, 0.0}};
+        @DisplayName("Test function with input that should evaluate to true, even kPts")
+        void correctInputEven() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(2.0, 0.0)
+            };
             assertTrue(DecideHelpFunctions.conditionFunctionSeven(2, 1.0, array));
         }
 
         @Test
         @DisplayName("Test function with input that should evaluate to true, odd kPts")
         void correctInputOdd() {
-            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {2.0, 0.0}};
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(2.0, 0.0)
+            };
             assertTrue(DecideHelpFunctions.conditionFunctionSeven(3, 1.0, array));
         }
 
         @Test
         @DisplayName("Test function with large array that should evaluate to true")
         void correctInputLongArray() {
-            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0},
-                    {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0},
-                    {0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {2.0, 0.0}};
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(2.0, 0.0)
+            };
             assertTrue(DecideHelpFunctions.conditionFunctionSeven(2, 1.0, array));
         }
 
         @Test
         @DisplayName("Not enough data points")
         void notEnoughPoints() {
-            double[][] array = {{0.0, 0.0}, {0.0, 0.0}};
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0)
+            };
             assertFalse(DecideHelpFunctions.conditionFunctionSeven(2, 1.0, array));
         }
 
         @Test
         @DisplayName("To short distance between points")
         void incorrectDistance() {
-            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}, {7, 0}};
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(7.0, 0.0)
+            };
             assertFalse(DecideHelpFunctions.conditionFunctionSeven(2, 7.0, array));
         }
 
         @Test
         @DisplayName("Incorrect spacing between points")
         void incorrectSpacing() {
-            double[][] array = {{0.0, 0.0}, {0.0, 0.0}, {7, 0}};
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(7.0, 0.0)
+            };
             assertFalse(DecideHelpFunctions.conditionFunctionSeven(3, 7.0, array));
         }
    }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function eight")
     class conditionFunctionEightTests {
+        @Test
+        @DisplayName("Test function with input that should evaluate to true")
+        void correctInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(2.0, 0.0)
+            };
+            assertTrue(DecideHelpFunctions.conditionFunctionEight(1, 1, 5, 0.9, array));
+        }
 
+        @Test
+        @DisplayName("Test function with input that should evaluate to false")
+        void incorrectInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(10.0, 0.0),
+                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0),
+                    new Point2D.Double(2.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionEight(1, 1, 5, 20.0, array));
+        }
+
+        @Test
+        @DisplayName("Not enough data points")
+        void notEnoughPoints() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(10.0, 0.0),
+                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionEight(1, 1, 5, 20.0, array));
+        }
     }
 
     @Disabled
