@@ -5,10 +5,23 @@ import utilities.MathHelper;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 
-public class DecideHelpFunctions {
+import utilities.MathHelper;
 
-    public boolean conditionFunctionZero(double length, double[][] coordinates) {
-        return true;
+
+public class DecideHelpFunctions {
+	
+	/**
+	 * Takes an array of 2D coordinates and check if any two consecutive points are at a distance of length 
+	 * apart. Returns true if such a pair is found, false otherwise.
+	 * @param length		: The distance 
+	 * @param coordinates	: The array of coordinates
+	 * @return {@code true}	: If there exists two consecutive coordinates with distance greater than length.
+	 */
+    public static boolean conditionFunctionZero(double length, Point2D[] coordinates) {
+    	for(int i = 0; i < coordinates.length-1; ++i) {
+    		if(coordinates[i].distance(coordinates[i+1]) > length) return true;
+    	}
+        return false;
     }
     
     /**
@@ -88,9 +101,26 @@ public class DecideHelpFunctions {
         return false;
     }
 
-    public boolean conditionFunctionTwo(double epsilon, double[][] coordinates) {
-        return true;
+    /**
+     * Checks if there is a set of 3 consecutive points that form an angle that is either greater than (Pi + {@code epsilon}),
+     * or lower than (Pi - {@code epsilon}). The second point is always the vertex of the angle, and if two of the three poins are equal,
+     * the point is undefined.
+     * @param epsilon Angle added and substracted from Pi for comparison (has to have an absolute value lower than Pi)
+     * @param coordinates The data points
+     * @return {@code true} if there exits at least three data points that meat the requirements, otherwise {@code false}
+     */
+    public static boolean conditionFunctionTwo(double epsilon, Point2D[] coordinates) {
+        if ((coordinates.length < 3) || (Math.abs(epsilon) > Math.PI)) return false; 
+        for (int i = 1; i < (coordinates.length - 1); i++){
+            if (!(coordinates[i].equals(coordinates[i-1]) && !(coordinates[i].equals(coordinates[i+1])))){
+                if ((Math.abs(Math.toRadians(MathHelper.getAngle(coordinates[i], coordinates[i-1], coordinates[i+1])))) > (Math.PI + epsilon) ||
+                    (Math.abs(Math.toRadians(MathHelper.getAngle(coordinates[i], coordinates[i-1], coordinates[i+1])))) < (Math.PI - epsilon))
+                    return true;
+                }
+            }
+        return false;
     }
+
 
     public boolean conditionFunctionThree(double area, double[][] coordinates) {
         return true;
