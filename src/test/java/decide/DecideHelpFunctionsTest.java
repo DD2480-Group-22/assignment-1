@@ -792,6 +792,12 @@ class DecideHelpFunctionsTest {
     	void correctInput() {
     		assertTrue(DecideHelpFunctions.conditionFunctionTwelve(default_kPts, default_length1, default_length2, default_array));
     	}
+    	
+    	@Test
+    	@DisplayName("Test function with negative kPts value, should return false")
+    	void invalidKPts() {
+    		assertFalse(DecideHelpFunctions.conditionFunctionTwelve(-3, default_length1, default_length2, default_array));
+    	}
     }
 
     @Nested
