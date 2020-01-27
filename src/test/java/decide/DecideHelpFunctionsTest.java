@@ -3,6 +3,7 @@ package decide;
 import org.junit.jupiter.api.*;
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,11 +17,75 @@ class DecideHelpFunctionsTest {
 
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function one")
     class conditionFunctionOneTests {
-
+    	@Test
+        @DisplayName("Test function with input of three points sqrt(2) from origo")
+        void basicCircularInput() {
+            Point2D[] coord = {
+                    new Point2D.Double(1.0, 1.0), 
+                    new Point2D.Double(-1.0, 1.0),
+                    new Point2D.Double(0.0, -Math.sqrt(2))
+            };
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionOne(1.0, coord));
+            assertTrue(DecideHelpFunctions.conditionFunctionOne(Math.sqrt(2)-0.01, coord));
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(4.0, coord));
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(Math.sqrt(2), coord));
+            
+            // Turn the coordinates counter-clockwise around origin
+            coord[0] = new Point2D.Double(Math.sqrt(2), 0);
+            coord[1] = new Point2D.Double(-1.0, 1.0);
+            coord[2] = new Point2D.Double(-1.0, -1.0);
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionOne(1.0, coord));
+            assertTrue(DecideHelpFunctions.conditionFunctionOne(Math.sqrt(2)-0.01, coord));
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(4.0, coord));
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(Math.sqrt(2), coord));
+            
+            // Turn the coordinates counter-clockwise around origin
+            coord[0] = new Point2D.Double(1.0, -1.0);
+            coord[1] = new Point2D.Double(0, Math.sqrt(2));
+            coord[2] = new Point2D.Double(-1.0, -1.0);
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionOne(1.0, coord));
+            assertTrue(DecideHelpFunctions.conditionFunctionOne(Math.sqrt(2)-0.01, coord));
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(4.0, coord));
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(Math.sqrt(2), coord));
+            
+        }
+    	
+    	@Test
+        @DisplayName("Test function with input of three points on a line")
+        void basicLinearInput() {
+            Point2D[] coord = {
+                    new Point2D.Double(0.0, 0.0), 
+                    new Point2D.Double(5.0, 0.0),
+                    new Point2D.Double(10.0, 0.0)
+            };
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionOne(2, coord));
+            assertTrue(DecideHelpFunctions.conditionFunctionOne(4, coord));
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(10, coord));
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(5, coord));
+        }
+    	
+    	@Test
+        @DisplayName("Test function with input a long array where only the last is not at origin")
+        void arrayInputOnlyLast() {
+            Point2D[] coord = new Point2D[10];
+            
+            for(int i = 0; i < 10; ++i) {
+            	coord[i] = new Point2D.Double(0.0,0.0);
+            }
+            coord[9].setLocation(3.0,4.0);
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionOne(1, coord));
+            assertTrue(DecideHelpFunctions.conditionFunctionOne(2, coord));
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(5, coord));
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(2.5, coord));
+        }
     }
 
     @Disabled
