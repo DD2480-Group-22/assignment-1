@@ -90,8 +90,8 @@ public class DecideHelpFunctions {
 
     /**
      * Checks if there are at least one set of two data points separated by exactly {@code gPts}, 
-     * with the second one having a lower X value than the first one.
-     * @param gPts Number of points between the two points
+     * with the second one having a lower x value than the first one.
+     * @param gPts Number of points between the two points comared
      * @param nrPoints Number of data points
      * @param coordinates The data points
      * @return {@code true} if there exits at least two data points that meat the requirements, otherwise {@code false}
