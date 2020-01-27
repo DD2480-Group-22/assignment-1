@@ -3,6 +3,7 @@ package decide;
 import org.junit.jupiter.api.*;
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -142,11 +143,86 @@ class DecideHelpFunctionsTest {
         }
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function three")
     class conditionFunctionThreeTests {
-
+    	@Test
+        @DisplayName("Test function for simple, straight triangle")
+        void simpleStraightTriangle() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), 
+                    new Point2D.Double(6.0, 0.0),
+                    new Point2D.Double(3.0, 3.0)
+            };
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionThree(5.0, array));
+            assertTrue(DecideHelpFunctions.conditionFunctionThree(8.99, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(10.0, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(9.0, array));
+        }
+    	
+    	@Test
+        @DisplayName("Test function for an angled triangle")
+        void angledTriangle() {
+            Point2D[] array = {
+                    new Point2D.Double(1.0, 0.0), 
+                    new Point2D.Double(3.0, 2.0),
+                    new Point2D.Double(0.0, 3.0)
+            };
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionThree(2.0, array));
+            assertTrue(DecideHelpFunctions.conditionFunctionThree(3.99, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(6.0, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(4.0, array));
+        }
+    	
+    	@Test
+        @DisplayName("Test function for an angled triangle with negative coordinates")
+        void negativeCoordinates() {
+            Point2D[] array = {
+                    new Point2D.Double(-1.0, 0.0), 
+                    new Point2D.Double(-3.0, -2.0),
+                    new Point2D.Double(0.0, -3.0)
+            };
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionThree(2.0, array));
+            assertTrue(DecideHelpFunctions.conditionFunctionThree(3.99, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(6.0, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(4.0, array));
+        }
+    	
+    	@Test
+        @DisplayName("Test function for array where every three consecutive points have two that are equal")
+        void longArrayOfPairwiseEqual() {
+            Point2D[] array = new Point2D[10];
+            
+            for(int i = 0; i < 10; i+=2) {
+            	array[i] = new Point2D.Double(i,i);
+            	array[i+1] = new Point2D.Double(i,i);
+            }
+            
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(10.0, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(5.0, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(1.0, array));
+        }
+    	
+    	@Test
+        @DisplayName("Test function for array where only the two last are not at origin")
+        void longArrayLastTwo() {
+            Point2D[] array = new Point2D[10];
+            
+            for(int i = 0; i < 10; ++i) {
+            	array[i] = new Point2D.Double(0.0,0.0);
+            }
+            
+            array[8].setLocation(4.0,0.0);
+            array[9].setLocation(4.0,4.0);
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionThree(4, array));
+            assertTrue(DecideHelpFunctions.conditionFunctionThree(7.99, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(10.0, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThree(8.0, array));
+        }
     }
 
     @Disabled
