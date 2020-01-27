@@ -443,11 +443,48 @@ class DecideHelpFunctionsTest {
 
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function thirteen")
     class conditionFunctionThirteenTests {
+        @Test
+        @DisplayName("Test function with input that should evaluate to true")
+        void correctInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(2.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(2.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(2.0, 0.0)
+            };
+            assertTrue(DecideHelpFunctions.conditionFunctionThirteen(2, 1, 13, 0.1, 0.9, array));
+        }
 
+        @Test
+        @DisplayName("Test function with input that should evaluate to false")
+        void incorrectInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(10.0, 0.0),
+                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0),
+                    new Point2D.Double(2.0, 0.0), new Point2D.Double(10.0, 0.0),
+                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0),
+                    new Point2D.Double(2.0, 0.0), new Point2D.Double(10.0, 0.0),
+                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0),
+                    new Point2D.Double(2.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionThirteen(1, 1, 13, 40.0, 20.0, array));
+        }
+
+        @Test
+        @DisplayName("Not enough data points")
+        void notEnoughPoints() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(10.0, 0.0),
+                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionThirteen(1, 1, 5, 0.1, 20.0, array));
+        }
     }
 
     @Disabled
