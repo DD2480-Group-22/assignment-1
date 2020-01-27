@@ -560,10 +560,50 @@ class DecideHelpFunctionsTest {
 
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function eleven")
     class conditionFunctionElevenTests {
+        @Test
+        @DisplayName("Test function with input that should evaluate to true")
+        void correctInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(3.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(2.0, 0.0)
+            };
+            assertTrue(DecideHelpFunctions.conditionFunctionEleven(1, 4, array));
+        }
+
+        @Test
+        @DisplayName("Test function with input that should evaluate to false")
+        void incorrectInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(2.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionEleven(1, 4, array));
+        }
+
+        @Test
+        @DisplayName("Not enough data points")
+        void notEnoughPoints() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(2.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionEleven(3, 2, array));
+        }
+
+        @Test
+        @DisplayName("Invalid gPts")
+        void invalidGPTS() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(10.0, 0.0),
+                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0),
+                    new Point2D.Double(2.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionEleven(0, 5, array));
+        }
+
 
     }
 

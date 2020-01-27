@@ -282,8 +282,20 @@ public class DecideHelpFunctions {
         return true;
     }
 
-    public boolean conditionFunctionEleven(int gPts, double[][] coordinates) {
-        return true;
+    /**
+     * Checks if there are at least one set of two data points separated by exactly {@code gPts}, 
+     * with the second one having a lower x value than the first one.
+     * @param gPts Number of points between the two points comared
+     * @param nrPoints Number of data points
+     * @param coordinates The data points
+     * @return {@code true} if there exits at least two data points that meat the requirements, otherwise {@code false}
+     */
+    public static boolean conditionFunctionEleven(int gPts, int nrPoints, Point2D[] coordinates){
+        if((gPts<1) || (nrPoints< (2 + gPts))) return false;
+        for (int i=0; i < (coordinates.length - gPts - 1); i++){
+            if(coordinates[i].getX() > coordinates[i+gPts+1].getX()) return true;
+        }
+        return false;
     }
 
     public boolean conditionFunctionTwelve(int kPts, double length1, double length2, double[][] coordinates) {
