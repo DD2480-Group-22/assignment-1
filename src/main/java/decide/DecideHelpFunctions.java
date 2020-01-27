@@ -49,9 +49,59 @@ public class DecideHelpFunctions {
     public boolean conditionFunctionThree(double area, double[][] coordinates) {
         return true;
     }
-
-    public boolean conditionFunctionFour(int qPts, int quads, double[][] coordinates) {
-        return true;
+    
+    /**
+     * Checks if there are at least one set of {@code qPts} consecutive points on the same quadrant, on more 
+     * than {@code quads} quadrants, with checking priority of quadrants starting from I to IV (highest to lowest).
+     * @param qPts
+     * @param quads
+     * @param coordinates
+     * @return {@code true} if there exists at least one set of points satisfying the previous criteria, otherwise {@code false} 
+     */
+    public static boolean conditionFunctionFour(int qPts, int quads, Point2D[] coordinates) {
+        Double x, y;
+        int[] is_in_quad = new int[4];
+        int total_quads;
+        
+        if (qPts < 2 || (coordinates.length - qPts) < 0 || quads > 3 || quads < 1) {
+        	return false;
+        }
+        
+    	
+    	for (int i = 0; i < coordinates.length - qPts; i++) {
+    		
+    		total_quads = 0;
+    		
+    		for (int j = 0; j < is_in_quad.length; j++) {
+    			is_in_quad[j] = 0;
+    		}
+    		
+        	for (int j = 0; j < qPts; j++) {
+        		x = coordinates[i+j].getX();
+        		y = coordinates[i+j].getY();
+        	
+        		if (x >= 0 && y >= 0) {
+        			is_in_quad[0] = 1;
+        		} else if (x > 0 && y < 0) {
+        			is_in_quad[1] = 1;
+        		} else if (x < 0 && y > 0) {
+        			is_in_quad[2] = 1;
+        		} else {
+        			is_in_quad[3] = 1;
+        		}
+        	}
+        	
+        	for (int j = 0; j < is_in_quad.length; j++) {
+        		total_quads += is_in_quad[j];
+        	}
+        	
+        	if (total_quads > quads) {
+        		return true;
+        	}
+        	
+        }
+    	
+    	return false;
     }
 
     /**

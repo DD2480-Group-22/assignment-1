@@ -149,11 +149,77 @@ class DecideHelpFunctionsTest {
 
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function four")
     class conditionFunctionFourTests {
-
+    	Point2D[] dummy_coord_array = { new Point2D.Double(-1.2, 1.0), new Point2D.Double(-0.3, 2.0), new Point2D.Double(0.2, -3.4),
+				  						new Point2D.Double(-2.4, 4.0), new Point2D.Double(1.2, 2.3), new Point2D.Double(0.1, 5.0)
+    	};
+    	
+    	@Test
+    	@DisplayName("Test function that should evaluate to true, needing 3 consecutive points on more than 2 different quadrants")
+    	void correctInput2Quads3Points() {
+    		Point2D[] coord_array = { new Point2D.Double(-1.2, 1.0), new Point2D.Double(-0.3, 2.0), new Point2D.Double(0.2, -3.4),
+  				  					  new Point2D.Double(-2.4, 4.0), new Point2D.Double(1.2, 2.3), new Point2D.Double(0.1, 5.0)
+        	};
+    		
+    		assertTrue(DecideHelpFunctions.conditionFunctionFour(3, 2, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Test function that should evaluate to false, needing 3 consecutive points on more than 2 different quadrants "
+    			+ "but with points on only 2 different quadrants")
+    	void incorrectInput2Quads3Points() {
+    		Point2D[] coord_array = { new Point2D.Double(-1.2, 1.0), new Point2D.Double(-0.3, 2.0), new Point2D.Double(-0.2, 3.4),
+    								  new Point2D.Double(-2.4, 4.0), new Point2D.Double(1.2, 2.3), new Point2D.Double(0.1, 5.0)
+    		};
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionFour(3, 2, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Test function that should evaluate to false, needing more points than there are coordinates available")
+    	void incorrectInputMorePtsThanCoords() {
+    		Point2D[] coord_array = dummy_coord_array;
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionFour(7, 2, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Test function that should evaluate to false, needing 3 consecutive points on more than 2 different quadrants but with"
+    			+ "non consecutive points on different quadrants")
+    	void incorrectInput3Quads3PointsNonconsecutive() {
+    		Point2D[] coord_array = { new Point2D.Double(-1.2, 1.0), new Point2D.Double(-0.3, 2.0), new Point2D.Double(-0.2, 3.4),
+    								  new Point2D.Double(2.4, 4.0), new Point2D.Double(1.2, 2.3), new Point2D.Double(-0.1, -5.0)
+    		};
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionFour(3, 2, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Test function that should evaluate to false, as it's asks for 1 point on any number of different quadrants")
+    	void incorrectInputNQuads1Point() {
+    		Point2D[] coord_array = dummy_coord_array;
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionFour(1, 3, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Test function that should evaluate to false, as asks for points on more than 3 quadrants")
+    	void incorrectInput5Quads() {
+    		Point2D[] coord_array = dummy_coord_array;
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionFour(3, 5, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Test function that should evaluate to false, as it asks for points on less than 1 quadrant")
+    	void incorrectInputZeroOrNegativeQuads() {
+    		Point2D[] coord_array = dummy_coord_array;
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionFour(3, -1, coord_array));
+    	}
+    	
     }
 
     @Nested
