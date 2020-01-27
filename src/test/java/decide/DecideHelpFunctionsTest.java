@@ -228,6 +228,42 @@ class DecideHelpFunctionsTest {
             };
             assertFalse(DecideHelpFunctions.conditionFunctionNine(1, 1, 5, 0.1, array));
         }
+
+        @Test
+        @DisplayName("Invalid epsilon")
+        void invalidEpsilon() {
+            Point2D[] array = {
+                    new Point2D.Double(1.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(1.0, 2.0)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionNine(1, 1, 5, 4, array));
+        }
+
+        @Test
+        @DisplayName("Invalid cPts")
+        void invalidCPTS() {
+            Point2D[] array = {
+                    new Point2D.Double(1.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(1.0, 2.0)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionNine(0, 1, 5, 4, array));
+        }
+
+        @Test
+        @DisplayName("Invalid dPts")
+        void invalidDPTS() {
+            Point2D[] array = {
+                    new Point2D.Double(1.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(1.0, 2.0)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionNine(1, 0, 5, 4, array));
+        }
     }
 
     @Disabled
