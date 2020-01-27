@@ -77,11 +77,55 @@ class DecideHelpFunctionsTest {
         }
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function six")
     class conditionFunctionSixTests {
+        @Test
+        @DisplayName("Test function with input that should evaluate to true")
+        void correctInput() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(5.0, 5.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(10.0, 0.0), new Point2D.Double(0.0, 0.0)
+            };
 
+            assertTrue(DecideHelpFunctions.conditionFunctionSix(5, 4, array));
+        }
+
+        @Test
+        @DisplayName("Test function with input that should evaluate to false, to short distance")
+        void toShortDistance() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(5.0, 5.0), new Point2D.Double(0.0, 10.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionSix(4, 10, array));
+        }
+
+        @Test
+        @DisplayName("Not in range")
+        void notInRange() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(0.0, 10.0), new Point2D.Double(5.0, 5.0),
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionSix(4, 10, array));
+        }
+
+        @Test
+        @DisplayName("Same coordinates")
+        void sameCoordinates() {
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(5.0, 5.0), new Point2D.Double(0.0, 0.0)
+            };
+
+            assertTrue(DecideHelpFunctions.conditionFunctionSix(4, 4, array));
+        }
     }
 
     @Nested

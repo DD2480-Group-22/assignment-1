@@ -1,5 +1,7 @@
 package decide;
 
+import utilities.MathHelper;
+
 import java.awt.geom.Point2D;
 
 public class DecideHelpFunctions {
@@ -37,8 +39,29 @@ public class DecideHelpFunctions {
         return false;
     }
 
-    public boolean conditionFunctionSix(int nPts, double dist, double[][] coordinates) {
-        return true;
+
+    /**
+     * Checks if there exists {@code nPts} consecutive data points such that at least one of the points lies a distance
+     * greater than {@code dist} from the line joining the first and last of these {@code nPts} points.
+     * If the first and last points of these {@code nPts} are identical, the distance from these points to all other
+     * points of the {@code nPts} consecutive points will be calculated.
+     * @param nPts The number of consecutive intervening points
+     * @param dist The distance to compare with
+     * @param coordinates The data points
+     * @return {@code true} if the requirements are meet, otherwise {@code false}
+     */
+    public static boolean conditionFunctionSix(int nPts, double dist, Point2D[] coordinates) {
+        for (int i = 0; i < coordinates.length && (i + nPts - 1) < coordinates.length; i++) {
+            for (int j = i + 1; j < (i + nPts - 1); j++) {
+                if (MathHelper.equalityCheckCoordinates(coordinates[i], coordinates[i + nPts - 1])) {
+                    if (coordinates[i].distance(coordinates[j]) > dist) return true;
+                }
+                else if (MathHelper.distanceToLine(coordinates[j], coordinates[i], coordinates[i + nPts - 1]) > dist) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -47,7 +70,7 @@ public class DecideHelpFunctions {
      * @param kPts The number of consecutive intervening points between the pair
      * @param length The distance between the data points
      * @param coordinates The data points
-     * @return {@code true} if there exits at least two data points that meat the requirements, otherwise {@code false}
+     * @return {@code true} if there exits at least two data points that meet the requirements, otherwise {@code false}
      */
     public static boolean conditionFunctionSeven(int kPts, double length, Point2D[] coordinates) {
         if (coordinates.length < 3) return false;

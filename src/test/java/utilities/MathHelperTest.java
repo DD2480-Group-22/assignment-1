@@ -10,11 +10,45 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MathHelperTest {
     @Nested
-    @DisplayName("Tests for the getAngle function")
-    class getAnglesTest {
+    @DisplayName("Tests for the distanceToLine function")
+    class distanceToLineTests {
+        @Test
+        @DisplayName("Returns correct distance")
+        void distanceCheck() {
+            assertEquals(5.0, MathHelper.distanceToLine(new Point2D.Double(0, 0),
+                    new Point2D.Double(0.0, 10.0), new Point2D.Double(5.0, 5.0)));
+
+            assertEquals(0.0, MathHelper.distanceToLine(new Point2D.Double(10, 10),
+                    new Point2D.Double(20.0, 20.0), new Point2D.Double(15.0, 15.0)));
+
+            assertEquals(20.0, MathHelper.distanceToLine(new Point2D.Double(20, 10),
+                    new Point2D.Double(20.0, 20.0), new Point2D.Double(0.0, 15.0)));
+        }
+    }
+
+    @Nested
+    @DisplayName("Tests for the equalityCheckCoordinates function")
+    class equalityCheckCoordinatesTests {
+        @Test
+        @DisplayName("Test of coordinates that should be considered to be equal ")
+        void samePoints() {
+            assertTrue(MathHelper.equalityCheckCoordinates(new Point2D.Double(0.000001, 0.0),
+                    new Point2D.Double(0.0000011, 0.0)));
+        }
 
         @Test
-        public void testPointAngle() {
+        @DisplayName("Test of coordinates that should not be considered to be equal")
+        void notSamePoints() {
+            assertFalse(MathHelper.equalityCheckCoordinates(new Point2D.Double(0.000001, 0.0),
+                    new Point2D.Double(0.00001, 0.0)));
+        }
+    }
+
+    @Nested
+    @DisplayName("Tests for the getAngle function")
+    class getAnglesTest {
+        @Test
+        void testPointAngle() {
             Point2D p1 = new Point2D.Double(2, 2);
             Point2D p2 = new Point2D.Double(0, 2);
             Point2D p3 = new Point2D.Double(-3, 2);
