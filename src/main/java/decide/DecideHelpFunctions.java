@@ -3,9 +3,19 @@ package decide;
 import java.awt.geom.Point2D;
 
 public class DecideHelpFunctions {
-
-    public boolean conditionFunctionZero(double length, double[][] coordinates) {
-        return true;
+	
+	/**
+	 * Takes an array of 2D coordinates and check if any two consecutive points are at a distance of length 
+	 * apart. Returns true if such a pair is found, false otherwise.
+	 * @param length		: The distance 
+	 * @param coordinates	: The array of coordinates
+	 * @return {@code true}	: If there exists two consecutive coordinates with distance greater than length.
+	 */
+    public static boolean conditionFunctionZero(double length, Point2D[] coordinates) {
+    	for(int i = 0; i < coordinates.length-1; ++i) {
+    		if(coordinates[i].distance(coordinates[i+1]) > length) return true;
+    	}
+        return false;
     }
 
     public boolean conditionFunctionOne(double radius, double[][] coordinates) {
