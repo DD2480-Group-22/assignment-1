@@ -100,9 +100,10 @@ public class DecideHelpFunctions {
     }
 
     /**
-     * Checks if there is a set of 3 consecutive points that form an angle that is either greater than (Pi + {@code epsilon}),
-     * or lower than (Pi - {@code epsilon}). The second point is always the vertex of the angle, and if two of the three poins are equal,
-     * the point is undefined.
+     * Takes points from a Point2D array and checks if there is a set of 3 consecutive points that form an angle 
+     * that is either greater than (Pi + {@code epsilon}),
+     * or lower than (Pi - {@code epsilon}). The second point is always the vertex of the angle, and if two of 
+     * the three poins are equal, the point is undefined.
      * @param epsilon Angle added and substracted from Pi for comparison (has to have an absolute value lower than Pi)
      * @param coordinates The data points
      * @return {@code true} if there exits at least three data points that meat the requirements, otherwise {@code false}
@@ -235,17 +236,19 @@ public class DecideHelpFunctions {
     }
 
     /**
-     * Takes sets of 3 points, with {@code aPts} between the first and second, and {@code bPts} between the second and third points.
-     * For each set it checks if the 3 selected points can all be contained within a circle of radius {@code radius1}.
+     * Takes sets of 3 points from a Point2D array, with {@code aPts} between the first and second point,
+     * and {@code bPts} between the second and third points.
+     * The condition is met if there's a set that can't be contained by a circle of radius {@code radius1}.
      * @param aPts Points between the first and second point
      * @param bPts Points between the second and third point
      * @param nrPoints Number of data points
      * @param radius1 Radius of the circle that has to contain all 3 points
      * @param coordinates The data points
-     * @return {@code true} if there exists a set of 3 points that meet the requirements, otherwise {@code false}
+     * @return {@code true} if there exists at least one set of 3 points that cannot be contained within a circle
+     * of radius {@code radius1}, otherwise {@code false}
      */
     public static boolean conditionFunctionEight(int aPts, int bPts, int nrPoints, double radius1, Point2D[] coordinates) {
-        if((aPts<0) || (bPts<0) || (nrPoints<(aPts + bPts + 3))) return false;
+        if((aPts<1) || (bPts<1) || (nrPoints<(aPts + bPts + 3))) return false;
         for (int i=0; i < (coordinates.length - aPts - bPts - 2); i++) {
             if (Math.max(Math.max(coordinates[i].distance(coordinates[i + aPts + 1]), coordinates[i].distance(coordinates[i + aPts + bPts + 2])),
                     coordinates[i + bPts + 1].distance(coordinates[i + aPts + 1])) > (2 * radius1))
@@ -255,7 +258,8 @@ public class DecideHelpFunctions {
     }
 
     /**
-     * Takes sets of 3 points, with {@code cPts} between the first and second, and {@code dPts} between the second and third points.
+     * Takes sets of 3 points from a Point2D array, with {@code cPts} between the first and second points,
+     * and {@code dPts} between the second and third points.
      * Checks if there is a set of 3 points that form an angle that is either greater than (Pi + {@code epsilon}),
      * or lower than (Pi - {@code epsilon}). The second point is always the vertex of the angle, and if two of the three poins are equal,
      * the angle is undefined.
@@ -267,7 +271,7 @@ public class DecideHelpFunctions {
      * @return {@code true} if there exists a set of 3 points that meet the requirements, otherwise {@code false}
      */
     public static boolean conditionFunctionNine(int cPts, int dPts, int nrPoints, double epsilon, Point2D[] coordinates) {
-        if((cPts<0) || (dPts<0) || (nrPoints<(cPts + dPts + 3))) return false;
+        if((cPts<1) || (dPts<1) || (nrPoints<(cPts + dPts + 3))) return false;
         for (int i=0; i < (coordinates.length - cPts - dPts - 2); i++){
             if(((Math.abs(Math.toRadians(MathHelper.getAngle(
                 coordinates[i+cPts+1], coordinates[i], coordinates[i+cPts+dPts+2])))) > (Math.PI + epsilon)) ||
@@ -303,9 +307,12 @@ public class DecideHelpFunctions {
     }
 
     /**
-     * Takes sets of 3 points, with {@code aPts} between the first and second, and {@code bPts} between the second and third points.
-     * For each set it checks if the 3 selected points can all be contained within a circle of radius {@code radius1}.
-     * The same condition must also be met for {@code readius2}, either with the same set of 3 points, or a different one.
+     * Takes sets of 3 points from a Point2D array, with {@code aPts} between the first and second point, and {@code bPts} 
+     * between the second and third points.
+     * For each set it checks if the 3 selected points cannot all be contained within a circle of radius {@code radius1}, and then
+     * it checks if they can be contained on a circle of radius {@code radius2}.
+     * If there's a set that can't be contained by de {@code radius1} circle, and a set that can be contained by the {@code radius2}
+     * circle, the the condition is met, even if both sets are the same one.
      * @param aPts Points between the first and second point
      * @param bPts Points between the second and third point
      * @param nrPoints Number of data points
@@ -315,15 +322,15 @@ public class DecideHelpFunctions {
      * @return {@code true} if there exists a set of 3 points that meet the requirements, otherwise {@code false}
      */
     public static boolean conditionFunctionThirteen(int aPts, int bPts, int nrPoints, double radius1, double radius2, Point2D[] coordinates) {
-        if((aPts<0) || (bPts<0) || (nrPoints<(aPts + bPts + 3))) return false;
+        if((aPts<1) || (bPts<1) || (nrPoints<(aPts + bPts + 3))) return false;
         boolean firstCondition = false;
         boolean secondCondition = false;
         for (int i=0; i < (coordinates.length - aPts - bPts - 2); i++){
             if(Math.max(Math.max(coordinates[i].distance(coordinates[i+aPts+1]), coordinates[i].distance(coordinates[i+aPts+bPts+2])),
-                coordinates[i+bPts+1].distance(coordinates[i+aPts+1]))> (2*radius1)) 
+                coordinates[i+bPts+1].distance(coordinates[i+aPts+1])) > (2*radius1)) 
                 firstCondition = true;
             if(Math.max(Math.max(coordinates[i].distance(coordinates[i+aPts+1]), coordinates[i].distance(coordinates[i+aPts+bPts+2])),
-                coordinates[i+bPts+1].distance(coordinates[i+aPts+1]))> (2*radius2)) 
+                coordinates[i+bPts+1].distance(coordinates[i+aPts+1])) < (2*radius2)) 
                 secondCondition = true;
             if(firstCondition && secondCondition) return true;
 
