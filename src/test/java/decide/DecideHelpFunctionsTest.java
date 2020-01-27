@@ -750,11 +750,48 @@ class DecideHelpFunctionsTest {
 
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function twelve")
     class conditionFunctionTwelveTests {
-
+    	int default_kPts = 3;
+    	double default_length1 = 2.0;
+    	double default_length2 = 3.5;
+    	
+    	Point2D[] default_array = { new Point2D.Double(1.0, 3.4), new Point2D.Double(2.0, 4.0), new Point2D.Double(1.0, 0.1), new Point2D.Double(3.0, 4.5),
+    								new Point2D.Double(6.0, 7.7), new Point2D.Double(2.4, 5.1), new Point2D.Double(2.4, 5.0), new Point2D.Double(6.4, 7.6)
+    	};
+    	
+    	
+    	@Test
+    	@DisplayName("Test function for an invalid number of points (< 3), should return false")
+    	void invalidNumPoints() {
+    		Point2D[] coord_array = {new Point2D.Double(1.0, 2.0), new Point2D.Double(3.0, 4.0)};
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionTwelve(default_kPts, default_length1, default_length2, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Test function for a negative lenght2, should return false")
+    	void invalidLength2() {
+    		double invalid_length2 = -1.5;
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionTwelve(default_kPts, default_length1, invalid_length2, default_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Test function with border input values, should return false")
+    	void borderIncorrectInput() {
+    		double border_length1 = 5.45;
+    		double border_length2 = 2.28;
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionTwelve(default_kPts, border_length1, border_length2, default_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Test function with correct input values, should return true")
+    	void correctInput() {
+    		assertTrue(DecideHelpFunctions.conditionFunctionTwelve(default_kPts, default_length1, default_length2, default_array));
+    	}
     }
 
     @Nested
