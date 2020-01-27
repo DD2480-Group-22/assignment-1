@@ -628,11 +628,79 @@ class DecideHelpFunctionsTest {
         }
     }
 
-    @Disabled
     @Nested
     @DisplayName("Tests for the condition function ten")
     class conditionFunctionTenTests {
-
+    	double default_area = 16.0;
+    	int default_ediff = 3;
+    	int default_fdiff = 4;
+    	Point2D[] template_array = { new Point2D.Double(1.0, 2.5), new Point2D.Double(2.4, 3.0), new Point2D.Double(1.0, 2.3), new Point2D.Double(5.0, 6.0),
+				new Point2D.Double(0.4, 0.2), new Point2D.Double(1.4, 5.6), new Point2D.Double(9.8, 3.1), new Point2D.Double(10.0, 2.0),
+				new Point2D.Double(1.3, 2.2), new Point2D.Double(1.1, 1.1), new Point2D.Double(4.2, 4.3), new Point2D.Double(0.5, 2.4)
+    	};
+  
+    	
+    	@Test
+    	@DisplayName("Should return true for 3 points where side ab is the shortest, ac the longest and bc is 2nd longest")
+    	void abLong3acLong1bcLong2() {
+    		Point2D[] coord_array = template_array;
+    		
+    		assertTrue(DecideHelpFunctions.conditionFunctionTen(default_ediff, default_fdiff, default_area, coord_array));
+    	}
+    	
+    	
+    	@Test
+    	@DisplayName("should return true for 3 points where side ab is the 2nd longest, ac is the longest and bc the shortest")
+    	void abLong2acLong1bcLong3() {
+    		Point2D[] coord_array = template_array;
+    		coord_array[0] = new Point2D.Double(1.0, 1.5);
+    		coord_array[3] = new Point2D.Double(7.0, 6.0);
+    		
+    		assertTrue(DecideHelpFunctions.conditionFunctionTen(default_ediff, default_fdiff, 18.0, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Should return false as it needs a bigger area than the ones we can make with given points")
+    	void incorrectArea() {
+    		Point2D[] coord_array = template_array;
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionTen(default_ediff, default_fdiff, 30.0, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("should return false as the number of coordinates is lower than 5 but the differences make it possible to succeed")
+    	void tooFewCoords() {
+    		Point2D[] coord_array = {new Point2D.Double(1.0, 0.0), new Point2D.Double(4.5, 1.2)};
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionTen(1, 2, default_area, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("should return false as ePts is negative")
+    	void invalidEPts() {
+    		Point2D[] coord_array = template_array;
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionTen(-2, default_fdiff, default_area, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("should return false as fPts is negative")
+    	void invalidFPts() {
+    		Point2D[] coord_array = template_array;
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionTen(default_ediff, -2, default_area, coord_array));
+    	}
+    	
+    	@Test
+    	@DisplayName("Should return false as it needs a difference larger than the quantity of points given")
+    	void notEnoughPointsforGivenDiff() {
+    		Point2D[] coord_array = {new Point2D.Double(2.4, 6.7), new Point2D.Double(1.0, 2.3)};
+    		
+    		assertFalse(DecideHelpFunctions.conditionFunctionTen(default_ediff, default_fdiff, default_area, coord_array));
+    	}
+    	
+    	
+    	
     }
 
     @Nested

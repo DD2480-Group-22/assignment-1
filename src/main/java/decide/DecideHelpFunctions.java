@@ -302,8 +302,65 @@ public class DecideHelpFunctions {
         return false;
     }
 
-    public boolean conditionFunctionTen(int ePts, int fPts, double area, double[][] coordinates) {
-        return true;
+    /**
+     * Checks if there's at least one set of 3 points separated by exactly {@code ePts} and {@code fPts} consecutive
+     * points in between them. These 3 points should also form a triangle with area greater than {@code area1}.
+     * The functions iterates all over the coordinates array checking points separated by ePts and ePts + fPts from the first one
+     * and then calculating the correct base and height depending on the geometry of the generated triangle, as there are 6 combinations
+     * for different side lengths.   
+     * @param ePts
+     * @param fPts
+     * @param area1
+     * @param coordinates
+     * @return {@code true} only if it satisfies the previous criteria, otherwise {@code false}
+     */
+    public static boolean conditionFunctionTen(int ePts, int fPts, double area1, Point2D[] coordinates) {
+    	Point2D a, b, c;
+    	double base, height, area;
+    	double side_1, side_2, side_3;
+    	
+    	if (coordinates.length < 5 || ePts < 1 || fPts < 1 || (ePts + fPts) > (coordinates.length - 3)) {
+    		return false;
+    	}
+    	
+    	for (int i = 0; i < coordinates.length - (ePts + fPts); i++) {
+    		a = coordinates[i];
+    		b = coordinates[i+ePts];
+    		c = coordinates[i+ePts+fPts];
+    		
+    		side_1 = a.distance(b);
+    		side_2 = a.distance(c);
+    		side_3 = b.distance(c);
+    		
+    		if (side_1 < side_2 && side_1 > side_3) {
+    			base = side_2;
+    			height = side_1 * Math.sin(MathHelper.getAngle(a, b, c));
+    		} else if (side_3 < side_2 && side_3 > side_1) {
+    			base = side_2;
+    			height = side_3 * Math.sin(MathHelper.getAngle(c, a, b));
+    		} else if (side_2 < side_3 && side_2 > side_1) {
+    			base = side_3;
+    			height = side_2 * Math.sin(MathHelper.getAngle(c, a, b));
+    		} else if (side_1 < side_3 && side_1 > side_2) {
+    			base = side_3;
+    			height = side_1 * Math.sin(MathHelper.getAngle(b, a, c));
+    		} else if (side_2 < side_1 && side_2 > side_3) {
+    			base = side_1;
+    			height = side_2 * Math.sin(MathHelper.getAngle(a, b, c));
+    		} else {
+    			base = side_1;
+    			height = side_3 * Math.sin(MathHelper.getAngle(b, a, c));
+    		}
+    		
+    		area = base * height / 2;
+    				
+    		if (area > area1) {
+    			return true;
+    		}
+    				
+    	}
+    	
+    	return false;
     }
 
     /**
