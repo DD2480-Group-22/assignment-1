@@ -55,6 +55,17 @@ class DecideHelpFunctionsTest {
             };
             assertFalse(DecideHelpFunctions.conditionFunctionTwo(0.1, array));
         }
+
+        @Test
+        @DisplayName("Invalid epsilon")
+        void invalidEpsilon() {
+            Point2D[] array = {
+                    new Point2D.Double(1.0, 0.0), new Point2D.Double(0.0, 0.0),
+                    new Point2D.Double(-1.0, 0.0), new Point2D.Double(-1.0, 0.0),
+                    new Point2D.Double(1.0, 0.0)
+            };
+            assertFalse(DecideHelpFunctions.conditionFunctionTwo(4.0, array));
+        }
     }
 
     @Disabled
