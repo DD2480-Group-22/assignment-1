@@ -45,6 +45,20 @@ class MathHelperTest {
     }
 
     @Nested
+    @DisplayName("tests for the qual function")
+    class equalTests {
+        @Test
+        void areEqual() {
+            assertTrue(MathHelper.equal(0.000001, 0.0000011));
+        }
+
+        @Test
+        void notEqual() {
+            assertFalse(MathHelper.equal(0.00001, 0.00002));
+        }
+    }
+
+    @Nested
     @DisplayName("Tests for the getAngle function")
     class getAnglesTest {
         @Test
