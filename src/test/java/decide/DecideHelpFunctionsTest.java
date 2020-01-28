@@ -756,10 +756,12 @@ class DecideHelpFunctionsTest {
         double default_length1 = 2.0;
         double default_length2 = 3.5;
 
-        Point2D[] default_array = {new Point2D.Double(1.0, 3.4), new Point2D.Double(2.0, 4.0), new Point2D.Double(1.0, 0.1), new Point2D.Double(3.0, 4.5),
-                new Point2D.Double(6.0, 7.7), new Point2D.Double(2.4, 5.1), new Point2D.Double(2.4, 5.0), new Point2D.Double(6.4, 7.6)
+        Point2D[] default_array = {
+                new Point2D.Double(1.0, 3.4), new Point2D.Double(2.0, 4.0),
+                new Point2D.Double(1.0, 0.1), new Point2D.Double(3.0, 4.5),
+                new Point2D.Double(6.0, 7.7), new Point2D.Double(2.4, 5.1),
+                new Point2D.Double(2.4, 5.0), new Point2D.Double(6.4, 7.6)
         };
-
 
         @Test
         @DisplayName("Test function for an invalid number of points (< 3), should return false")
@@ -860,7 +862,6 @@ class DecideHelpFunctionsTest {
             assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 10, 12, array));
             assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 12, 6, array));
             assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 2, 1, 20, array));
-
         }
 
         @Test
