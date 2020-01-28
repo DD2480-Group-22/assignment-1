@@ -88,6 +88,17 @@ class DecideHelpFunctionsTest {
             assertFalse(DecideHelpFunctions.conditionFunctionZero(2, coord));
             assertFalse(DecideHelpFunctions.conditionFunctionZero(Math.sqrt(2), coord));
         }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertTrue(DecideHelpFunctions.conditionFunctionZero(1.0, arrays));
+        }
     }
 
     @Nested
@@ -159,6 +170,17 @@ class DecideHelpFunctionsTest {
             assertFalse(DecideHelpFunctions.conditionFunctionOne(5, coord));
             assertFalse(DecideHelpFunctions.conditionFunctionOne(2.5, coord));
         }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(2.0, arrays));
+        }
     }
 
     @Nested
@@ -204,6 +226,17 @@ class DecideHelpFunctionsTest {
                     new Point2D.Double(1.0, 0.0)
             };
             assertFalse(DecideHelpFunctions.conditionFunctionTwo(4.0, array));
+        }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertTrue(DecideHelpFunctions.conditionFunctionTwo(0.785, arrays));
         }
     }
 
@@ -287,6 +320,17 @@ class DecideHelpFunctionsTest {
             assertFalse(DecideHelpFunctions.conditionFunctionThree(10.0, array));
             assertFalse(DecideHelpFunctions.conditionFunctionThree(8.0, array));
         }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertTrue(DecideHelpFunctions.conditionFunctionThree(1.0, arrays));
+        }
     }
 
     @Nested
@@ -360,6 +404,16 @@ class DecideHelpFunctionsTest {
             assertFalse(DecideHelpFunctions.conditionFunctionFour(3, -1, coord_array));
         }
 
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionFour(2, 3, arrays));
+        }
     }
 
     @Nested
@@ -392,6 +446,17 @@ class DecideHelpFunctionsTest {
                     new Point2D.Double(0.0, 0.0)
             };
             assertFalse(DecideHelpFunctions.conditionFunctionFive(array));
+        }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestFive() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertTrue(DecideHelpFunctions.conditionFunctionFive(arrays));
         }
     }
 
@@ -443,6 +508,17 @@ class DecideHelpFunctionsTest {
             };
 
             assertTrue(DecideHelpFunctions.conditionFunctionSix(4, 4, array));
+        }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(1, -1)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionSix(3, 2.0, arrays));
         }
     }
 
@@ -517,6 +593,17 @@ class DecideHelpFunctionsTest {
             };
             assertFalse(DecideHelpFunctions.conditionFunctionSeven(3, 7.0, array));
         }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertTrue(DecideHelpFunctions.conditionFunctionSeven(1, 1.0, arrays));
+        }
     }
 
     @Nested
@@ -552,6 +639,17 @@ class DecideHelpFunctionsTest {
                     new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0)
             };
             assertFalse(DecideHelpFunctions.conditionFunctionEight(1, 1, 5, 20.0, array));
+        }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionEight(1, 1, 5, 2.0, arrays));
         }
     }
 
@@ -626,6 +724,17 @@ class DecideHelpFunctionsTest {
 
             assertFalse(DecideHelpFunctions.conditionFunctionNine(1, 0, 5, 4, array));
         }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertTrue(DecideHelpFunctions.conditionFunctionNine(1, 1, 5, 0.785, arrays));
+        }
     }
 
     @Nested
@@ -699,7 +808,16 @@ class DecideHelpFunctionsTest {
             assertFalse(DecideHelpFunctions.conditionFunctionTen(default_ediff, default_fdiff, default_area, coord_array));
         }
 
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
 
+            assertTrue(DecideHelpFunctions.conditionFunctionTen(1, 1, 1.0, arrays));
+        }
     }
 
     @Nested
@@ -746,7 +864,16 @@ class DecideHelpFunctionsTest {
             assertFalse(DecideHelpFunctions.conditionFunctionEleven(0, 5, array));
         }
 
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
 
+            assertTrue(DecideHelpFunctions.conditionFunctionEleven(2, 5, arrays));
+        }
     }
 
     @Nested
@@ -803,6 +930,17 @@ class DecideHelpFunctionsTest {
         void invalidKPts() {
             assertFalse(DecideHelpFunctions.conditionFunctionTwelve(-3, default_length1, default_length2, default_array));
         }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionTwelve(1, 1.0, 2.0, arrays));
+        }
     }
 
     @Nested
@@ -846,6 +984,17 @@ class DecideHelpFunctionsTest {
                     new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0)
             };
             assertFalse(DecideHelpFunctions.conditionFunctionThirteen(1, 1, 5, 0.1, 20.0, array));
+        }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionThirteen(1, 1, 5, 2.0, 1.0, arrays));
         }
     }
 
@@ -912,6 +1061,17 @@ class DecideHelpFunctionsTest {
             assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 1, 40, array));
             assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 1, 40, array));
             assertFalse(DecideHelpFunctions.conditionFunctionFourteen(0, 0, 1, 40, array));
+        }
+
+        @Test
+        @DisplayName("Program test 1")
+        void programTestOne() {
+            Point2D[] arrays = {
+                    new Point2D.Double(2, 2), new Point2D.Double(1, 1), new Point2D.Double(-1, 1),
+                    new Point2D.Double(-1, -1), new Point2D.Double(1, -1)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 1.0, 2.0, arrays));
         }
     }
 }
