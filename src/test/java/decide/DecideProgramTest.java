@@ -3,8 +3,11 @@ package decide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utilities.IOHandler;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DecideProgramTest {
 
@@ -17,8 +20,13 @@ class DecideProgramTest {
     }
 
     @Test
-    void decide() {
-        DecideProgram decideProgram = new DecideProgram();
-        assertTrue(decideProgram.decide());
+    void launchConfigFile() {
+        try {
+            IOHandler ioHandler = new IOHandler();
+            DecideProgram decideProgram = ioHandler.readTest("test_1.in");
+            assertTrue(decideProgram.launch());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

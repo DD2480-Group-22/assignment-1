@@ -419,7 +419,7 @@ class DecideHelpFunctionsTest {
                     new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0)
             };
 
-            assertFalse(DecideHelpFunctions.conditionFunctionSix(4, 10, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionSix(4, 10.0, array));
         }
 
         @Test
