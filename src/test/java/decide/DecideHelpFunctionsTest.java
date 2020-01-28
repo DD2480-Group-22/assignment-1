@@ -738,15 +738,41 @@ class DecideHelpFunctionsTest {
     class conditionFunctionFourteenTests {
     	@Test
         @DisplayName("Basic test for three data points with only 1 point between each")
-        void notEnoughPoints() {
+        void basicSmallestInput() {
             Point2D[] array = {
                     new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
                     new Point2D.Double(6.0, 0.0), new Point2D.Double(0.0, 0.0),
                     new Point2D.Double(3.0, 3.0)
             };
             
-            
             assertTrue(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 4, 15, array));
+            assertTrue(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 8, 10, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 10, 12, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 12, 6, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 2, 1, 20, array));
+            
         }
+    	
+    	@Test
+        @DisplayName("Basic test for three data points with only 1 point between each")
+        void longArray() {
+            Point2D[] array = new Point2D[20];
+            
+            for(int i = 0; i < 20; ++i) {
+            	array[i] = new Point2D.Double(i, 0.0);
+            }
+            
+            array[15].setLocation(15.0, 10.0);
+            
+            System.out.println("Current test");
+            
+            assertTrue(DecideHelpFunctions.conditionFunctionFourteen(3, 3, 25, 30, array));
+            assertTrue(DecideHelpFunctions.conditionFunctionFourteen(3, 3, 39, 21, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 30, 35, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 2, 6, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(2, 2, 40, 20, array));
+        }
+    	
+    	
     }
 }

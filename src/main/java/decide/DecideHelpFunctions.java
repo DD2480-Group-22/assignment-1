@@ -119,7 +119,7 @@ public class DecideHelpFunctions {
         return false;
     }
 
-
+    
     public static boolean conditionFunctionThree(double area, Point2D[] coordinates) {
     	if(coordinates.length < 3) return false;
     	for (int i = 0; i < (coordinates.length - 2); ++i) {
@@ -130,15 +130,12 @@ public class DecideHelpFunctions {
     			continue;
     		}
     		
-    		double width = coordinates[i].distance(coordinates[i+1]);
-    		double height = MathHelper.distanceToLine(coordinates[i], coordinates[i+1], coordinates[i+2]);
+    		double triangle_area = MathHelper.triangleArea(coordinates[i], coordinates[i+1], coordinates[i+2]);
     		
-    		System.out.println("Width "+width);
-    		System.out.println("Height "+height);
-    		
-    		double triangle_area = width*height/2;
-    		
-    		System.out.println("Area "+triangle_area);
+    		// If the area is 0, the the points are on a line and does not form a triangle
+    		if(MathHelper.equal(triangle_area, 0)) {
+    			continue;
+    		}
     		
     		if(triangle_area > area && !MathHelper.equal(triangle_area, area)) {
     			return true;
@@ -364,21 +361,23 @@ public class DecideHelpFunctions {
     	// e_pts and f_pts for the interveing data points and 2 for the other data points in the triangle
     	int l = coordinates.length - (ePts + fPts + 2); 
     	for(int i = 0; i < l; ++i) {
-    		Point2D point1 = coordinates[i];
-    		Point2D point2 = coordinates[i+ePts+1];
-    		Point2D point3 = coordinates[i+ePts+fPts+2];
+    		
+    		int i1 = i+ePts+1;
+    		int i2 = i+ePts+fPts+2;
     		
     		// If two points are at the same location, then there is no triangle
-    		if(MathHelper.equalityCheckCoordinates(point1, point2) ||
-    				MathHelper.equalityCheckCoordinates(point1, point3) ||
-    				MathHelper.equalityCheckCoordinates(point2, point3) ) {
+    		if(MathHelper.equalityCheckCoordinates(coordinates[i], coordinates[i1]) ||
+    				MathHelper.equalityCheckCoordinates(coordinates[i], coordinates[i2]) ||
+    				MathHelper.equalityCheckCoordinates(coordinates[i1], coordinates[i2]) ) {
     			continue;
     		}
     		
-    		double width = point1.distance(point2);
-    		double height = MathHelper.distanceToLine(point1, point2, point3);
+    		double triangle_area = MathHelper.triangleArea(coordinates[i], coordinates[i1], coordinates[i2]);
     		
-    		double triangle_area = width*height/2;
+    		// If the area is 0, the the points are on a line and does not form a triangle
+    		if(MathHelper.equal(triangle_area, 0)) {
+    			continue;
+    		}
     		
     		if(triangle_area > area1 && !MathHelper.equal(triangle_area, area1)) {
     			area1_condition = true;
