@@ -909,10 +909,14 @@ class DecideHelpFunctionsTest {
         @Test
         @DisplayName("Test function with border input values, should return false")
         void borderIncorrectInput() {
-            double border_length1 = 5.45;
-            double border_length2 = 2.28;
+            Point2D[] array = {
+                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0, 0.0),
+                    new Point2D.Double(2.0, 0)
+            };
+            double border_length1 = 1;
+            double border_length2 = 1.5;
 
-            assertTrue(DecideHelpFunctions.conditionFunctionTwelve(default_kPts, border_length1, border_length2, default_array));
+            assertFalse(DecideHelpFunctions.conditionFunctionTwelve(1, border_length1, border_length2, array));
         }
 
         @Test
