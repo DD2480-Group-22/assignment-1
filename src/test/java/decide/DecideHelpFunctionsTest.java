@@ -613,22 +613,22 @@ class DecideHelpFunctionsTest {
         @DisplayName("Test function with input that should evaluate to true")
         void correctInput() {
             Point2D[] array = {
-                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
-                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
-                    new Point2D.Double(2.0, 0.0)
+                    new Point2D.Double(-0.5, 0.866), new Point2D.Double(0, 0), 
+                    new Point2D.Double(-0.5, -0.866),new Point2D.Double(0, 0),
+                    new Point2D.Double(1, 0),        new Point2D.Double(0, 0)
             };
-            assertTrue(DecideHelpFunctions.conditionFunctionEight(1, 1, 5, 0.9, array));
+            assertTrue(DecideHelpFunctions.conditionFunctionEight(1, 1, 6, 0.999, array));
         }
 
         @Test
         @DisplayName("Test function with input that should evaluate to false")
         void incorrectInput() {
             Point2D[] array = {
-                    new Point2D.Double(0.0, 0.0), new Point2D.Double(10.0, 0.0),
-                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0),
-                    new Point2D.Double(2.0, 0.0)
+                    new Point2D.Double(-0.5, 0.866), new Point2D.Double(0, 0), 
+                    new Point2D.Double(-0.5, -0.866),new Point2D.Double(0, 0),
+                    new Point2D.Double(1, 0),        new Point2D.Double(0, 0)
             };
-            assertFalse(DecideHelpFunctions.conditionFunctionEight(1, 1, 5, 20.0, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionEight(1, 1, 6, 1.0, array));
         }
 
         @Test
@@ -950,30 +950,22 @@ class DecideHelpFunctionsTest {
         @DisplayName("Test function with input that should evaluate to true")
         void correctInput() {
             Point2D[] array = {
-                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
-                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
-                    new Point2D.Double(2.0, 0.0), new Point2D.Double(0.0, 0.0),
-                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
-                    new Point2D.Double(2.0, 0.0), new Point2D.Double(0.0, 0.0),
-                    new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
-                    new Point2D.Double(2.0, 0.0)
+                    new Point2D.Double(-0.5, 0.866), new Point2D.Double(0, 0), 
+                    new Point2D.Double(-0.5, -0.866),new Point2D.Double(0, 0),
+                    new Point2D.Double(1, 0),        new Point2D.Double(0, 0)
             };
-            assertTrue(DecideHelpFunctions.conditionFunctionThirteen(2, 1, 13, 0.1, 30.9, array));
+            assertTrue(DecideHelpFunctions.conditionFunctionThirteen(1, 1, 6, 0.99, 0.5, array));
         }
 
         @Test
         @DisplayName("Test function with input that should evaluate to false")
         void incorrectInput() {
             Point2D[] array = {
-                    new Point2D.Double(0.0, 0.0), new Point2D.Double(10.0, 0.0),
-                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0),
-                    new Point2D.Double(2.0, 0.0), new Point2D.Double(10.0, 0.0),
-                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0),
-                    new Point2D.Double(2.0, 0.0), new Point2D.Double(10.0, 0.0),
-                    new Point2D.Double(6.0, 6.0), new Point2D.Double(0.0, 15.0),
-                    new Point2D.Double(2.0, 0.0)
+                    new Point2D.Double(-0.5, 0.866), new Point2D.Double(0, 0), 
+                    new Point2D.Double(-0.5, -0.866),new Point2D.Double(0, 0),
+                    new Point2D.Double(1, 0),        new Point2D.Double(1, 0)
             };
-            assertFalse(DecideHelpFunctions.conditionFunctionThirteen(1, 1, 13, 40.0, 20.0, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionThirteen(1, 1, 6, 1.0, 0.5, array));
         }
 
         @Test
