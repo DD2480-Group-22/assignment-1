@@ -406,7 +406,8 @@ public class DecideHelpFunctions {
      * @return {@code true} if criteria is met, otherwise {@code false}
      */
     public static boolean conditionFunctionTwelve(int kPts, double length1, double length2, Point2D[] coordinates) {
-        boolean cond_1 = false, cond_2 = false;
+        boolean cond_1 = false;
+        boolean cond_2 = false;
         Point2D p1, p2;
         double dist;
 
@@ -414,9 +415,9 @@ public class DecideHelpFunctions {
             return false;
         }
 
-        for (int i = 0; i < coordinates.length - kPts; i++) {
+        for (int i = 0; i < coordinates.length - kPts - 1; i++) {
             p1 = coordinates[i];
-            p2 = coordinates[i + kPts];
+            p2 = coordinates[i + kPts + 1];
 
             dist = p1.distance(p2);
 
