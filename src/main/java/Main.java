@@ -7,8 +7,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 	    try {
-			DecideProgram decideProgram = new IOHandler().readTest("test_3.in");
-			System.out.println(decideProgram.launch());
+			DecideProgram decide_program = new IOHandler().readTest("test_3.in");
+			System.out.println(decide_program.launch());
 		} catch (IOException e) {
 	        System.err.println("Something went wrong while trying to read a file");
         } catch (Exception e) {

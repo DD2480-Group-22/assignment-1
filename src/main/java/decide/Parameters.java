@@ -9,17 +9,17 @@ public class Parameters {
     private double area1;
     private double area2;
     private double dist;
-    private int qPts;
+    private int q_pts;
     private int quads;
-    private int nPts;
-    private int kPts;
-    private int aPts;
-    private int bPts;
-    private int cPts;
-    private int dPts;
-    private int ePts;
-    private int fPts;
-    private int gPts;
+    private int n_pts;
+    private int k_pts;
+    private int a_pts;
+    private int b_pts;
+    private int c_pts;
+    private int d_pts;
+    private int e_pts;
+    private int f_pts;
+    private int g_pts;
 
     /**
      * Initializes a newly created {@code Parameters} object, based on the input variables.
@@ -32,21 +32,21 @@ public class Parameters {
      * @param area1   the area1 value
      * @param area2   the area2 value
      * @param dist    the dist value
-     * @param qPts    the qPts value
+     * @param q_pts    the qPts value
      * @param quads   the quads value
-     * @param nPts    the nPts value
-     * @param kPts    the kPts value
-     * @param aPts    the aPts value
-     * @param bPts    the bPts value
-     * @param cPts    the cPts value
-     * @param dPts    the dPts value
-     * @param ePts    the ePts value
-     * @param fPts    the fPts value
-     * @param gPts    the gPts value
+     * @param n_pts    the nPts value
+     * @param k_pts    the kPts value
+     * @param a_pts    the aPts value
+     * @param b_pts    the bPts value
+     * @param c_pts    the cPts value
+     * @param d_pts    the dPts value
+     * @param e_pts    the ePts value
+     * @param f_pts    the fPts value
+     * @param g_pts    the gPts value
      */
     public Parameters(double epsilon, double length1, double length2, double radius1, double radius2, double area1,
-                      double area2, double dist, int qPts, int quads, int nPts, int kPts, int aPts, int bPts, int cPts,
-                      int dPts, int ePts, int fPts, int gPts) {
+                      double area2, double dist, int q_pts, int quads, int n_pts, int k_pts, int a_pts, int b_pts, int c_pts,
+                      int d_pts, int e_pts, int f_pts, int g_pts) {
         this.epsilon = epsilon;
         this.length1 = length1;
         this.length2 = length2;
@@ -55,17 +55,17 @@ public class Parameters {
         this.area1 = area1;
         this.area2 = area2;
         this.quads = quads;
-        this.qPts = qPts;
+        this.q_pts = q_pts;
         this.dist = dist;
-        this.nPts = nPts;
-        this.kPts = kPts;
-        this.aPts = aPts;
-        this.bPts = bPts;
-        this.cPts = cPts;
-        this.dPts = dPts;
-        this.ePts = ePts;
-        this.fPts = fPts;
-        this.gPts = gPts;
+        this.n_pts = n_pts;
+        this.k_pts = k_pts;
+        this.a_pts = a_pts;
+        this.b_pts = b_pts;
+        this.c_pts = c_pts;
+        this.d_pts = d_pts;
+        this.e_pts = e_pts;
+        this.f_pts = f_pts;
+        this.g_pts = g_pts;
     }
 
     /**
@@ -73,30 +73,30 @@ public class Parameters {
      * The {@code doubleParameters} contains all the values for the fields that are of type {@code double} and the
      * {@code intParameters} contains all the values for the fields that are of type {@code int}.
      *
-     * @param doubleParameters The {@code double} array
-     * @param intParameters    The {@code int} array
+     * @param double_parameters The {@code double} array
+     * @param int_parameters    The {@code int} array
      */
-    public Parameters(double[] doubleParameters, int[] intParameters) {
-        epsilon = doubleParameters[0];
-        length1 = doubleParameters[1];
-        length2 = doubleParameters[2];
-        radius1 = doubleParameters[3];
-        radius2 = doubleParameters[4];
-        area1 = doubleParameters[5];
-        area2 = doubleParameters[6];
-        dist = doubleParameters[7];
+    public Parameters(double[] double_parameters, int[] int_parameters) {
+        epsilon = double_parameters[0];
+        length1 = double_parameters[1];
+        length2 = double_parameters[2];
+        radius1 = double_parameters[3];
+        radius2 = double_parameters[4];
+        area1 = double_parameters[5];
+        area2 = double_parameters[6];
+        dist = double_parameters[7];
 
-        qPts = intParameters[0];
-        quads = intParameters[1];
-        nPts = intParameters[2];
-        kPts = intParameters[3];
-        aPts = intParameters[4];
-        bPts = intParameters[5];
-        cPts = intParameters[6];
-        dPts = intParameters[7];
-        ePts = intParameters[8];
-        fPts = intParameters[9];
-        gPts = intParameters[10];
+        q_pts = int_parameters[0];
+        quads = int_parameters[1];
+        n_pts = int_parameters[2];
+        k_pts = int_parameters[3];
+        a_pts = int_parameters[4];
+        b_pts = int_parameters[5];
+        c_pts = int_parameters[6];
+        d_pts = int_parameters[7];
+        e_pts = int_parameters[8];
+        f_pts = int_parameters[9];
+        g_pts = int_parameters[10];
     }
 
     /**
@@ -168,7 +168,7 @@ public class Parameters {
      * @return the value of qPts
      */
     public int getqPts() {
-        return qPts;
+        return q_pts;
     }
 
     /**
@@ -195,7 +195,7 @@ public class Parameters {
      * @return the value of pts
      */
     public int getnPts() {
-        return nPts;
+        return n_pts;
     }
 
     /**
@@ -204,7 +204,7 @@ public class Parameters {
      * @return the value of kPts
      */
     public int getkPts() {
-        return kPts;
+        return k_pts;
     }
 
     /**
@@ -213,7 +213,7 @@ public class Parameters {
      * @return the value of aPts
      */
     public int getaPts() {
-        return aPts;
+        return a_pts;
     }
 
     /**
@@ -222,7 +222,7 @@ public class Parameters {
      * @return the value of bPts
      */
     public int getbPts() {
-        return bPts;
+        return b_pts;
     }
 
     /**
@@ -231,7 +231,7 @@ public class Parameters {
      * @return the value of cPts
      */
     public int getcPts() {
-        return cPts;
+        return c_pts;
     }
 
     /**
@@ -240,7 +240,7 @@ public class Parameters {
      * @return the value of dPts
      */
     public int getdPts() {
-        return dPts;
+        return d_pts;
     }
 
     /**
@@ -249,7 +249,7 @@ public class Parameters {
      * @return the value of ePts
      */
     public int getePts() {
-        return ePts;
+        return e_pts;
     }
 
     /**
@@ -258,7 +258,7 @@ public class Parameters {
      * @return the value of fPts
      */
     public int getfPts() {
-        return fPts;
+        return f_pts;
     }
 
     /**
@@ -267,6 +267,6 @@ public class Parameters {
      * @return the value of gPts
      */
     public int getgPts() {
-        return gPts;
+        return g_pts;
     }
 }

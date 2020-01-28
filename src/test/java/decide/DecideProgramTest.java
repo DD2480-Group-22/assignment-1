@@ -22,9 +22,9 @@ class DecideProgramTest {
     @Test
     void launchConfigFile() {
         try {
-            IOHandler ioHandler = new IOHandler();
-            DecideProgram decideProgram = ioHandler.readTest("test_1.in");
-            assertTrue(decideProgram.launch());
+            IOHandler io_handler = new IOHandler();
+            DecideProgram decide_program = io_handler.readTest("test_1.in");
+            assertTrue(decide_program.launch());
         } catch (IOException e) {
             e.printStackTrace();
         }

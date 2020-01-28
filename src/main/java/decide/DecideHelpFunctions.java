@@ -157,22 +157,22 @@ public class DecideHelpFunctions {
      * Checks if there are at least one set of {@code qPts} consecutive points on the same quadrant, on more
      * than {@code quads} quadrants, with checking priority of quadrants starting from I to IV (highest to lowest).
      *
-     * @param qPts
+     * @param q_pts
      * @param quads
      * @param coordinates
      * @return {@code true} if there exists at least one set of points satisfying the previous criteria, otherwise {@code false}
      */
-    public static boolean conditionFunctionFour(int qPts, int quads, Point2D[] coordinates) {
+    public static boolean conditionFunctionFour(int q_pts, int quads, Point2D[] coordinates) {
         Double x, y;
         int[] is_in_quad = new int[4];
         int total_quads;
 
-        if (qPts < 2 || (coordinates.length - qPts) < 0 || quads > 3 || quads < 1) {
+        if (q_pts < 2 || (coordinates.length - q_pts) < 0 || quads > 3 || quads < 1) {
             return false;
         }
 
 
-        for (int i = 0; i < coordinates.length - qPts; i++) {
+        for (int i = 0; i < coordinates.length - q_pts; i++) {
 
             total_quads = 0;
 
@@ -180,7 +180,7 @@ public class DecideHelpFunctions {
                 is_in_quad[j] = 0;
             }
 
-            for (int j = 0; j < qPts; j++) {
+            for (int j = 0; j < q_pts; j++) {
                 x = coordinates[i + j].getX();
                 y = coordinates[i + j].getY();
 
@@ -229,17 +229,17 @@ public class DecideHelpFunctions {
      * If the first and last points of these {@code nPts} are identical, the distance from these points to all other
      * points of the {@code nPts} consecutive points will be calculated.
      *
-     * @param nPts        The number of consecutive intervening points
+     * @param n_pts        The number of consecutive intervening points
      * @param dist        The distance to compare with
      * @param coordinates The data points
      * @return {@code true} if the requirements are meet, otherwise {@code false}
      */
-    public static boolean conditionFunctionSix(int nPts, double dist, Point2D[] coordinates) {
-        for (int i = 0; i < coordinates.length && (i + nPts - 1) < coordinates.length; i++) {
-            for (int j = i + 1; j < (i + nPts - 1); j++) {
-                if (MathHelper.equalityCheckCoordinates(coordinates[i], coordinates[i + nPts - 1])) {
+    public static boolean conditionFunctionSix(int n_pts, double dist, Point2D[] coordinates) {
+        for (int i = 0; i < coordinates.length && (i + n_pts - 1) < coordinates.length; i++) {
+            for (int j = i + 1; j < (i + n_pts - 1); j++) {
+                if (MathHelper.equalityCheckCoordinates(coordinates[i], coordinates[i + n_pts - 1])) {
                     if (coordinates[i].distance(coordinates[j]) > dist) return true;
-                } else if (MathHelper.distanceToLine(coordinates[j], coordinates[i], coordinates[i + nPts - 1]) > dist) {
+                } else if (MathHelper.distanceToLine(coordinates[j], coordinates[i], coordinates[i + n_pts - 1]) > dist) {
                     return true;
                 }
             }
@@ -251,16 +251,16 @@ public class DecideHelpFunctions {
      * Checks if there are at least one set of two data points separated by exactly {@code kPts} consecutive intervening
      * points that are a distance greater than {@code length} apart from each other.
      *
-     * @param kPts        The number of consecutive intervening points between the pair
+     * @param k_pts        The number of consecutive intervening points between the pair
      * @param length      The distance between the data points
      * @param coordinates The data points
      * @return {@code true} if there exits at least two data points that meet the requirements, otherwise {@code false}
      */
-    public static boolean conditionFunctionSeven(int kPts, double length, Point2D[] coordinates) {
+    public static boolean conditionFunctionSeven(int k_pts, double length, Point2D[] coordinates) {
         if (coordinates.length < 3) return false;
-        for (int i = 0; i < coordinates.length && (i + kPts + 1) < coordinates.length; i++) {
+        for (int i = 0; i < coordinates.length && (i + k_pts + 1) < coordinates.length; i++) {
             Point2D pointA = coordinates[i];
-            Point2D pointB = coordinates[i + (kPts + 1)];
+            Point2D pointB = coordinates[i + (k_pts + 1)];
             if (pointA.distance(pointB) > length) return true;
         }
         return false;
@@ -271,19 +271,19 @@ public class DecideHelpFunctions {
      * and {@code bPts} between the second and third points.
      * The condition is met if there's a set that can't be contained by a circle of radius {@code radius1}.
      *
-     * @param aPts        Points between the first and second point
-     * @param bPts        Points between the second and third point
-     * @param nrPoints    Number of data points
+     * @param a_pts        Points between the first and second point
+     * @param b_pts        Points between the second and third point
+     * @param nr_points    Number of data points
      * @param radius1     Radius of the circle that has to contain all 3 points
      * @param coordinates The data points
      * @return {@code true} if there exists at least one set of 3 points that cannot be contained within a circle
      * of radius {@code radius1}, otherwise {@code false}
      */
-    public static boolean conditionFunctionEight(int aPts, int bPts, int nrPoints, double radius1, Point2D[] coordinates) {
-        if ((aPts < 1) || (bPts < 1) || (nrPoints < (aPts + bPts + 3))) return false;
-        for (int i = 0; i < (coordinates.length - aPts - bPts - 2); i++) {
-            if (Math.max(Math.max(coordinates[i].distance(coordinates[i + aPts + 1]), coordinates[i].distance(coordinates[i + aPts + bPts + 2])),
-                    coordinates[i + bPts + 1].distance(coordinates[i + aPts + 1])) > (2 * radius1))
+    public static boolean conditionFunctionEight(int a_pts, int b_pts, int nr_points, double radius1, Point2D[] coordinates) {
+        if ((a_pts < 1) || (b_pts < 1) || (nr_points < (a_pts + b_pts + 3))) return false;
+        for (int i = 0; i < (coordinates.length - a_pts - b_pts - 2); i++) {
+            if (Math.max(Math.max(coordinates[i].distance(coordinates[i + a_pts + 1]), coordinates[i].distance(coordinates[i + a_pts + b_pts + 2])),
+                    coordinates[i + b_pts + 1].distance(coordinates[i + a_pts + 1])) > (2 * radius1))
                 return true;
         }
         return false;
@@ -296,20 +296,20 @@ public class DecideHelpFunctions {
      * or lower than (Pi - {@code epsilon}). The second point is always the vertex of the angle, and if two of the three poins are equal,
      * the angle is undefined.
      *
-     * @param cPts        Points between the first and second point
-     * @param dPts        Points between the second and third point
-     * @param nrPoints    Number of data points
+     * @param c_pts        Points between the first and second point
+     * @param d_pts        Points between the second and third point
+     * @param nr_points    Number of data points
      * @param epsilon     Angle added and substracted from Pi
      * @param coordinates The data points
      * @return {@code true} if there exists a set of 3 points that meet the requirements, otherwise {@code false}
      */
-    public static boolean conditionFunctionNine(int cPts, int dPts, int nrPoints, double epsilon, Point2D[] coordinates) {
-        if ((cPts < 1) || (dPts < 1) || (nrPoints < (cPts + dPts + 3))) return false;
-        for (int i = 0; i < (coordinates.length - cPts - dPts - 2); i++) {
+    public static boolean conditionFunctionNine(int c_pts, int d_pts, int nr_points, double epsilon, Point2D[] coordinates) {
+        if ((c_pts < 1) || (d_pts < 1) || (nr_points < (c_pts + d_pts + 3))) return false;
+        for (int i = 0; i < (coordinates.length - c_pts - d_pts - 2); i++) {
             if (((Math.abs(Math.toRadians(MathHelper.getAngle(
-                    coordinates[i + cPts + 1], coordinates[i], coordinates[i + cPts + dPts + 2])))) > (Math.PI + epsilon)) ||
+                    coordinates[i + c_pts + 1], coordinates[i], coordinates[i + c_pts + d_pts + 2])))) > (Math.PI + epsilon)) ||
                     ((Math.abs(Math.toRadians(MathHelper.getAngle(
-                            coordinates[i + cPts + 1], coordinates[i], coordinates[i + cPts + dPts + 2])))) < (Math.PI - epsilon)))
+                            coordinates[i + c_pts + 1], coordinates[i], coordinates[i + c_pts + d_pts + 2])))) < (Math.PI - epsilon)))
                 return true;
         }
         return false;
@@ -322,25 +322,25 @@ public class DecideHelpFunctions {
      * and then calculating the correct base and height depending on the geometry of the generated triangle, as there are 6 combinations
      * for different side lengths.
      *
-     * @param ePts
-     * @param fPts
+     * @param e_pts
+     * @param f_pts
      * @param area1
      * @param coordinates
      * @return {@code true} only if it satisfies the previous criteria, otherwise {@code false}
      */
-    public static boolean conditionFunctionTen(int ePts, int fPts, double area1, Point2D[] coordinates) {
+    public static boolean conditionFunctionTen(int e_pts, int f_pts, double area1, Point2D[] coordinates) {
         Point2D a, b, c;
         double base, height, area;
         double side_1, side_2, side_3;
 
-        if (coordinates.length < 5 || ePts < 1 || fPts < 1 || (ePts + fPts) > (coordinates.length - 3)) {
+        if (coordinates.length < 5 || e_pts < 1 || f_pts < 1 || (e_pts + f_pts) > (coordinates.length - 3)) {
             return false;
         }
 
-        for (int i = 0; i < coordinates.length - (ePts + fPts); i++) {
+        for (int i = 0; i < coordinates.length - (e_pts + f_pts); i++) {
             a = coordinates[i];
-            b = coordinates[i + ePts];
-            c = coordinates[i + ePts + fPts];
+            b = coordinates[i + e_pts];
+            c = coordinates[i + e_pts + f_pts];
 
             side_1 = a.distance(b);
             side_2 = a.distance(c);
@@ -381,15 +381,15 @@ public class DecideHelpFunctions {
      * Checks if there are at least one set of two data points separated by exactly {@code gPts},
      * with the second one having a lower x value than the first one.
      *
-     * @param gPts        Number of points between the two points comared
-     * @param nrPoints    Number of data points
+     * @param g_pts        Number of points between the two points comared
+     * @param nr_points    Number of data points
      * @param coordinates The data points
      * @return {@code true} if there exits at least two data points that meat the requirements, otherwise {@code false}
      */
-    public static boolean conditionFunctionEleven(int gPts, int nrPoints, Point2D[] coordinates) {
-        if ((gPts < 1) || (nrPoints < (2 + gPts))) return false;
-        for (int i = 0; i < (coordinates.length - gPts - 1); i++) {
-            if (coordinates[i].getX() > coordinates[i + gPts + 1].getX()) return true;
+    public static boolean conditionFunctionEleven(int g_pts, int nr_points, Point2D[] coordinates) {
+        if ((g_pts < 1) || (nr_points < (2 + g_pts))) return false;
+        for (int i = 0; i < (coordinates.length - g_pts - 1); i++) {
+            if (coordinates[i].getX() > coordinates[i + g_pts + 1].getX()) return true;
         }
         return false;
     }
@@ -398,29 +398,29 @@ public class DecideHelpFunctions {
      * Checks if there are 2 points, p1 and p2, that satisfy {@code |p1 - p2| > lenght1} and also another (or the same) set of
      * 2 points that satisfy {@code |p1 - p2| < length2}. If both conditions get to be true, then it returns boolean value for true.
      *
-     * @param kPts
+     * @param k_pts
      * @param length1
      * @param length2
      * @param coordinates
      * @return {@code true} if criteria is met, otherwise {@code false}
      */
-    public static boolean conditionFunctionTwelve(int kPts, double length1, double length2, Point2D[] coordinates) {
+    public static boolean conditionFunctionTwelve(int k_pts, double length1, double length2, Point2D[] coordinates) {
         boolean cond_1 = false, cond_2 = false;
         Point2D p1, p2;
         double dist;
 
-        if (coordinates.length < 3 || length2 < 0 || kPts < 0) {
+        if (coordinates.length < 3 || length2 < 0 || k_pts < 0) {
             return false;
         }
 
 
-        for (int i = 0; i < coordinates.length - kPts; i++) {
+        for (int i = 0; i < coordinates.length - k_pts; i++) {
             if (cond_1 && cond_2) {
                 return true;
             }
 
             p1 = coordinates[i];
-            p2 = coordinates[i + kPts];
+            p2 = coordinates[i + k_pts];
 
             dist = p1.distance(p2);
 
@@ -445,26 +445,26 @@ public class DecideHelpFunctions {
      * If there's a set that can't be contained by de {@code radius1} circle, and a set that can be contained by the {@code radius2}
      * circle, the the condition is met, even if both sets are the same one.
      *
-     * @param aPts        Points between the first and second point
-     * @param bPts        Points between the second and third point
-     * @param nrPoints    Number of data points
+     * @param a_pts        Points between the first and second point
+     * @param b_pts        Points between the second and third point
+     * @param nr_points    Number of data points
      * @param radius1     First ardius of the circle that has to contain all 3 points
      * @param radius2     Second radius of the circle that has to contain all 3 points
      * @param coordinates The data points
      * @return {@code true} if there exists a set of 3 points that meet the requirements, otherwise {@code false}
      */
-    public static boolean conditionFunctionThirteen(int aPts, int bPts, int nrPoints, double radius1, double radius2, Point2D[] coordinates) {
-        if ((aPts < 1) || (bPts < 1) || (nrPoints < (aPts + bPts + 3))) return false;
-        boolean firstCondition = false;
-        boolean secondCondition = false;
-        for (int i = 0; i < (coordinates.length - aPts - bPts - 2); i++) {
-            if (Math.max(Math.max(coordinates[i].distance(coordinates[i + aPts + 1]), coordinates[i].distance(coordinates[i + aPts + bPts + 2])),
-                    coordinates[i + bPts + 1].distance(coordinates[i + aPts + 1])) > (2 * radius1))
-                firstCondition = true;
-            if (Math.max(Math.max(coordinates[i].distance(coordinates[i + aPts + 1]), coordinates[i].distance(coordinates[i + aPts + bPts + 2])),
-                    coordinates[i + bPts + 1].distance(coordinates[i + aPts + 1])) < (2 * radius2))
-                secondCondition = true;
-            if (firstCondition && secondCondition) return true;
+    public static boolean conditionFunctionThirteen(int a_pts, int b_pts, int nr_points, double radius1, double radius2, Point2D[] coordinates) {
+        if ((a_pts < 1) || (b_pts < 1) || (nr_points < (a_pts + b_pts + 3))) return false;
+        boolean first_condition = false;
+        boolean second_condition = false;
+        for (int i = 0; i < (coordinates.length - a_pts - b_pts - 2); i++) {
+            if (Math.max(Math.max(coordinates[i].distance(coordinates[i + a_pts + 1]), coordinates[i].distance(coordinates[i + a_pts + b_pts + 2])),
+                    coordinates[i + b_pts + 1].distance(coordinates[i + a_pts + 1])) > (2 * radius1))
+                first_condition = true;
+            if (Math.max(Math.max(coordinates[i].distance(coordinates[i + a_pts + 1]), coordinates[i].distance(coordinates[i + a_pts + b_pts + 2])),
+                    coordinates[i + b_pts + 1].distance(coordinates[i + a_pts + 1])) < (2 * radius2))
+                second_condition = true;
+            if (first_condition && second_condition) return true;
 
         }
         return false;
@@ -475,25 +475,25 @@ public class DecideHelpFunctions {
      * form a triangle. There exists a triangle with an area larger than area1 and a triangle smaller than area2, return true. Otherwise
      * return false.
      *
-     * @param ePts        : Number of consecutive points between first and second points in the triangle
-     * @param fPts        : Number of consecutive points between second and third points in the triangle
+     * @param e_pts        : Number of consecutive points between first and second points in the triangle
+     * @param f_pts        : Number of consecutive points between second and third points in the triangle
      * @param area1       : The area a triangle must be found larger than
      * @param area2       : The area a triangle must be found smaller than
      * @param coordinates : The array of coordinates
      * @return {@code true} : If a triangle is found larger than area1 and a triangle is found smaller than area2
      */
-    public static boolean conditionFunctionFourteen(int ePts, int fPts, double area1, double area2, Point2D[] coordinates) {
+    public static boolean conditionFunctionFourteen(int e_pts, int f_pts, double area1, double area2, Point2D[] coordinates) {
         if (coordinates.length < 5) return false;
 
         boolean area1_condition = false;
         boolean area2_condition = false;
 
         // e_pts and f_pts for the interveing data points and 2 for the other data points in the triangle
-        int l = coordinates.length - (ePts + fPts + 2);
+        int l = coordinates.length - (e_pts + f_pts + 2);
         for (int i = 0; i < l; ++i) {
 
-            int i1 = i + ePts + 1;
-            int i2 = i + ePts + fPts + 2;
+            int i1 = i + e_pts + 1;
+            int i2 = i + e_pts + f_pts + 2;
 
             // If two points are at the same location, then there is no triangle
             if (MathHelper.equalityCheckCoordinates(coordinates[i], coordinates[i1]) ||
