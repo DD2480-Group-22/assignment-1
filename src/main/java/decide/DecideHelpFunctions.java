@@ -380,9 +380,47 @@ public class DecideHelpFunctions {
         }
         return false;
     }
-
-    public boolean conditionFunctionTwelve(int kPts, double length1, double length2, double[][] coordinates) {
-        return true;
+    
+    /**
+     * Checks if there are 2 points, p1 and p2, that satisfy {@code |p1 - p2| > lenght1} and also another (or the same) set of
+     * 2 points that satisfy {@code |p1 - p2| < length2}. If both conditions get to be true, then it returns boolean value for true.
+     * @param kPts
+     * @param length1
+     * @param length2
+     * @param coordinates
+     * @return {@code true} if criteria is met, otherwise {@code false}
+     */
+    public static boolean conditionFunctionTwelve(int kPts, double length1, double length2, Point2D[] coordinates) {
+        boolean cond_1 = false, cond_2 = false;
+    	Point2D p1, p2;
+        double dist;
+    	
+    	if (coordinates.length < 3 || length2 < 0 || kPts < 0) {
+    		return false;
+    	}
+    	
+    	
+    	for (int i = 0; i < coordinates.length - kPts; i++) {
+    		if (cond_1 && cond_2) {
+    			return true;
+    		}
+    		
+    		p1 = coordinates[i];
+    		p2 = coordinates[i+kPts];
+    		
+    		dist = p1.distance(p2);
+    		
+    		if (dist > length1 && !MathHelper.equal(dist, length1)) {
+    			cond_1 = true;
+    		}
+    		
+    		if (dist < length2 && !MathHelper.equal(dist, length2)) {
+    			cond_2 = true;
+    		}
+        	
+        }
+    	
+    	return false;
     }
 
     /**

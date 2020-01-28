@@ -119,5 +119,4 @@ public class MathHelper {
     	
     	return width*height/2;
     }
-
 }
