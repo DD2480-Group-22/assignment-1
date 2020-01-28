@@ -25,25 +25,64 @@ public class DecideProgram {
         this.preliminaryUnlockingVector = puv;
     }
 
-    public DecideProgram() {
-
-    }
-
     /**
      * Makes a decision based on the provided variables when the {@code DecideProgram} object was created.
      * Returns {@code true} if the provided variables satisfies the conditions for a launch, otherwise the function
-     * returns {@code false}.
+     * returns {@code false}
+     *
      * @return the decision
      */
-    public boolean decide() {
-        return true; //TODO implement the decide function
+    public boolean launch() {
+        boolean[] cmv = createCMV();
+        boolean[][] pum = new boolean[15][15];
+        boolean[] fuv = new boolean[15];
+
+        for (int i = 0; i < pum.length; i++) {
+            for (int j = 0; j < pum[i].length; j++) {
+                pum[i][j] = logicEvaluator(logicalConnectorMatrix[i][j], cmv[i], cmv[j]);
+            }
+        }
+
+        for (int i = 0; i < pum.length; i++) {
+            if (!preliminaryUnlockingVector[i]) {
+                fuv[i] = true;
+            } else {
+                fuv[i] = evaluateBooleanArray(pum[i]);
+            }
+        }
+
+        return evaluateBooleanArray(fuv);
     }
-    
-    /**
-     * Getter for numPoints as it's needed in some functions for validation checks
-     * @return the number of points {@code numPoints}
-     */
-    public int getNumPoints() {
-    	return numPoints;
+
+
+    private boolean[] createCMV() {
+        return new boolean[]{
+                DecideHelpFunctions.conditionFunctionZero(parameters.getLength1(), coordinates),
+                DecideHelpFunctions.conditionFunctionOne(parameters.getRadius1(), coordinates),
+                DecideHelpFunctions.conditionFunctionTwo(parameters.getEpsilon(), coordinates),
+                DecideHelpFunctions.conditionFunctionThree(parameters.getArea1(), coordinates),
+                DecideHelpFunctions.conditionFunctionFour(parameters.getqPts(), parameters.getQuads(), coordinates),
+                DecideHelpFunctions.conditionFunctionFive(coordinates),
+                DecideHelpFunctions.conditionFunctionSix(parameters.getnPts(), parameters.getDist(), coordinates),
+                DecideHelpFunctions.conditionFunctionSeven(parameters.getkPts(), parameters.getLength1(), coordinates),
+                DecideHelpFunctions.conditionFunctionEight(parameters.getaPts(), parameters.getbPts(), numPoints, parameters.getRadius1(), coordinates),
+                DecideHelpFunctions.conditionFunctionNine(parameters.getcPts(), parameters.getdPts(), parameters.getEpsilon(), coordinates),
+                DecideHelpFunctions.conditionFunctionTen(parameters.getePts(), parameters.getfPts(), parameters.getArea1(), coordinates),
+                DecideHelpFunctions.conditionFunctionEleven(parameters.getgPts(), coordinates),
+                DecideHelpFunctions.conditionFunctionTwelve(parameters.getkPts(), parameters.getLength1(), parameters.getLength2(), coordinates),
+                DecideHelpFunctions.conditionFunctionThirteen(parameters.getaPts(), parameters.getbPts(), parameters.getRadius1(), parameters.getRadius2(), coordinates),
+                DecideHelpFunctions.conditionFunctionFourteen(parameters.getePts(), parameters.getfPts(), parameters.getArea1(), parameters.getArea2(), coordinates)
+        };
+    }
+
+    private boolean logicEvaluator(Connectors connector, boolean valueA, boolean valueB) {
+        if (Connectors.NOTUSED.equals(connector)) return true;
+        if (Connectors.ANDD.equals(connector)) return valueA && valueB;
+        return valueA || valueB;
+    }
+
+    private boolean evaluateBooleanArray(boolean[] fuv) {
+        for (boolean value : fuv) if (!value) return false;
+        return true;
     }
 }

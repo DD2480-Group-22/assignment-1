@@ -1,9 +1,11 @@
 package decide;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -278,7 +280,7 @@ class DecideHelpFunctionsTest {
                     new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0)
             };
 
-            assertFalse(DecideHelpFunctions.conditionFunctionSix(4, 10, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionSix(4, 10.0, array));
         }
 
         @Test
