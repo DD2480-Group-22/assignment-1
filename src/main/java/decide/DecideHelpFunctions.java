@@ -119,7 +119,12 @@ public class DecideHelpFunctions {
         return false;
     }
 
-
+    /**
+     * Checks if three consecutive 2D coordinate points in an array form a triangle with area larger than the given input area. 
+     * @param area		    : The given area that the triangle must be larger than 
+     * @param coordinates   : The array of 2D coordinates
+     * @return {@code true} : If three consecutive points form a triangle with an area larger than the input area
+     */
     public static boolean conditionFunctionThree(double area, Point2D[] coordinates) {
     	if(coordinates.length < 3) return false;
     	for (int i = 0; i < (coordinates.length - 2); ++i) {
@@ -130,15 +135,12 @@ public class DecideHelpFunctions {
     			continue;
     		}
     		
-    		double width = coordinates[i].distance(coordinates[i+1]);
-    		double height = MathHelper.distanceToLine(coordinates[i], coordinates[i+1], coordinates[i+2]);
+    		double triangle_area = MathHelper.triangleArea(coordinates[i], coordinates[i+1], coordinates[i+2]);
     		
-    		System.out.println("Width "+width);
-    		System.out.println("Height "+height);
-    		
-    		double triangle_area = width*height/2;
-    		
-    		System.out.println("Area "+triangle_area);
+    		// If the area is 0, the the points are on a line and does not form a triangle
+    		if(MathHelper.equal(triangle_area, 0)) {
+    			continue;
+    		}
     		
     		if(triangle_area > area && !MathHelper.equal(triangle_area, area)) {
     			return true;
@@ -411,8 +413,53 @@ public class DecideHelpFunctions {
         }
         return false;
     }
-
-    public boolean conditionFunctionFourteen(int ePts, int fPts, double area1, double area2, double[][] coordinates) {
-        return true;
+    
+    /**
+     * Takes an array of 2D coordinates and checks if there exists three with with ePts and fPts consecutive points apart respectively
+     * form a triangle. There exists a triangle with an area larger than area1 and a triangle smaller than area2, return true. Otherwise
+     * return false. 
+     * @param ePts	: Number of consecutive points between first and second points in the triangle
+     * @param fPts	: Number of consecutive points between second and third points in the triangle
+     * @param area1	: The area a triangle must be found larger than
+     * @param area2	: The area a triangle must be found smaller than
+     * @param coordinates   : The array of coordinates
+     * @return {@code true} : If a triangle is found larger than area1 and a triangle is found smaller than area2
+     */
+    public static boolean conditionFunctionFourteen(int ePts, int fPts, double area1, double area2, Point2D[] coordinates) {
+    	if(coordinates.length < 5) return false;
+    	
+    	boolean area1_condition = false;
+    	boolean area2_condition = false;
+    	
+    	// e_pts and f_pts for the interveing data points and 2 for the other data points in the triangle
+    	int l = coordinates.length - (ePts + fPts + 2); 
+    	for(int i = 0; i < l; ++i) {
+    		
+    		int i1 = i+ePts+1;
+    		int i2 = i+ePts+fPts+2;
+    		
+    		// If two points are at the same location, then there is no triangle
+    		if(MathHelper.equalityCheckCoordinates(coordinates[i], coordinates[i1]) ||
+    				MathHelper.equalityCheckCoordinates(coordinates[i], coordinates[i2]) ||
+    				MathHelper.equalityCheckCoordinates(coordinates[i1], coordinates[i2]) ) {
+    			continue;
+    		}
+    		
+    		double triangle_area = MathHelper.triangleArea(coordinates[i], coordinates[i1], coordinates[i2]);
+    		
+    		// If the area is 0, the the points are on a line and does not form a triangle
+    		if(MathHelper.equal(triangle_area, 0)) {
+    			continue;
+    		}
+    		
+    		if(triangle_area > area1 && !MathHelper.equal(triangle_area, area1)) {
+    			area1_condition = true;
+    		}
+    		if(triangle_area < area2 && !MathHelper.equal(triangle_area, area2)) {
+    			area2_condition = true;
+    		} 
+    	}
+    	
+        return area1_condition && area2_condition;
     }
 }
