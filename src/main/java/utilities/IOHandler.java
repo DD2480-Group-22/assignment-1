@@ -5,7 +5,10 @@ import decide.DecideProgram;
 import decide.Parameters;
 
 import java.awt.geom.Point2D;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 
 public class IOHandler {
@@ -14,6 +17,7 @@ public class IOHandler {
      * Creates a new {@code DecideProgram} instance based on the content of the resource file specified by the
      * resource's file name. The function will throw an {@code IllegalArgumentException} if no resource with the
      * specified name can be found in the resource folder.
+     *
      * @param fileName The name of the resource file
      * @return The created DecideProgram instance
      * @throws IOException If an error occur while trying to read the resource file
@@ -77,6 +81,7 @@ public class IOHandler {
 
     /**
      * Creates a new {@code File} instance and returns it based on the provided file name.
+     *
      * @param fileName the name of the resource
      * @return a {@code File} object for the specified
      * @throws IllegalArgumentException if no resource with the provided name ({@code fileName}) could be located
