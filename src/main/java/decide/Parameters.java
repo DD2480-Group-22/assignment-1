@@ -1,25 +1,25 @@
 package decide;
 
 public class Parameters {
-    private double epsilon;
-    private double length1;
-    private double length2;
-    private double radius1;
-    private double radius2;
-    private double area1;
-    private double area2;
-    private double dist;
-    private int qPts;
-    private int quads;
-    private int nPts;
-    private int kPts;
-    private int aPts;
-    private int bPts;
-    private int cPts;
-    private int dPts;
-    private int ePts;
-    private int fPts;
-    private int gPts;
+    private final double epsilon;
+    private final double length1;
+    private final double length2;
+    private final double radius1;
+    private final double radius2;
+    private final double area1;
+    private final double area2;
+    private final double dist;
+    private final int qPts;
+    private final int quads;
+    private final int nPts;
+    private final int kPts;
+    private final int aPts;
+    private final int bPts;
+    private final int cPts;
+    private final int dPts;
+    private final int ePts;
+    private final int fPts;
+    private final int gPts;
 
     /**
      * Initializes a newly created {@code Parameters} object, based on the input variables.
