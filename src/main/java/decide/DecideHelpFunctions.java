@@ -395,8 +395,9 @@ public class DecideHelpFunctions {
     }
 
     /**
-     * Checks if there are 2 points, p1 and p2, that satisfy {@code |p1 - p2| > lenght1} and also another (or the same) set of
-     * 2 points that satisfy {@code |p1 - p2| < length2}. If both conditions get to be true, then it returns boolean value for true.
+     * Checks if there are two points, p1 and p2, that satisfy {@code |p1 - p2| > lenght1} and also another
+     * (or the same) set of 2 points that satisfy {@code |p1 - p2| < length2}. If both conditions get to be true,
+     * then it returns boolean value for true.
      *
      * @param kPts
      * @param length1
@@ -413,12 +414,7 @@ public class DecideHelpFunctions {
             return false;
         }
 
-
         for (int i = 0; i < coordinates.length - kPts; i++) {
-            if (cond_1 && cond_2) {
-                return true;
-            }
-
             p1 = coordinates[i];
             p2 = coordinates[i + kPts];
 
@@ -431,10 +427,9 @@ public class DecideHelpFunctions {
             if (dist < length2 && !MathHelper.equal(dist, length2)) {
                 cond_2 = true;
             }
-
         }
 
-        return false;
+        return cond_1 && cond_2;
     }
 
     /**
