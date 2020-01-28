@@ -172,6 +172,16 @@ class DecideHelpFunctionsTest {
         }
 
         @Test
+        @DisplayName("Few coordinates")
+        void smallVector() {
+            Point2D[] array = {
+                    new Point2D.Double(0, 0), new Point2D.Double(1, 0), new Point2D.Double(10, 10)
+            };
+
+            assertFalse(DecideHelpFunctions.conditionFunctionOne(20, array));
+        }
+
+        @Test
         @DisplayName("Program test 1")
         void programTestOne() {
             Point2D[] arrays = {
