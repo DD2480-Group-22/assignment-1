@@ -9,18 +9,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParametersTest {
 
-    Parameters parametersIndividual;
-    Parameters parametersArrays;
+    Parameters parameters_individual;
+    Parameters parameters_arrays;
 
     @BeforeEach
     void setUp() {
-        parametersIndividual = new Parameters(1.0, 2.0, 3.0, 4.0, 5.0,
+        parameters_individual = new Parameters(1.0, 2.0, 3.0, 4.0, 5.0,
                 6.0, 7.0, 8.0, 1, 2, 3, 4, 5, 6, 7, 8,
                 9, 10, 11);
 
         double[] doubles = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0};
         int[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-        parametersArrays = new Parameters(doubles, ints);
+        parameters_arrays = new Parameters(doubles, ints);
     }
 
     @Nested
@@ -28,12 +28,12 @@ class ParametersTest {
     class epsilonTests {
         @Test
         void individual() {
-            assertEquals(1.0, parametersIndividual.getEpsilon());
+            assertEquals(1.0, parameters_individual.getEpsilon());
         }
 
         @Test
         void arrays() {
-            assertEquals(1.0, parametersArrays.getEpsilon());
+            assertEquals(1.0, parameters_arrays.getEpsilon());
         }
     }
 
@@ -42,12 +42,12 @@ class ParametersTest {
     class length1Tests {
         @Test
         void individual() {
-            assertEquals(2.0, parametersIndividual.getLength1());
+            assertEquals(2.0, parameters_individual.getLength1());
         }
 
         @Test
         void arrays() {
-            assertEquals(2.0, parametersArrays.getLength1());
+            assertEquals(2.0, parameters_arrays.getLength1());
         }
     }
 
@@ -56,12 +56,12 @@ class ParametersTest {
     class length2Tests {
         @Test
         void individual() {
-            assertEquals(3.0, parametersIndividual.getLength2());
+            assertEquals(3.0, parameters_individual.getLength2());
         }
 
         @Test
         void arrays() {
-            assertEquals(3.0, parametersArrays.getLength2());
+            assertEquals(3.0, parameters_arrays.getLength2());
         }
     }
 
@@ -70,12 +70,12 @@ class ParametersTest {
     class radius1Tests {
         @Test
         void individual() {
-            assertEquals(4.0, parametersIndividual.getRadius1());
+            assertEquals(4.0, parameters_individual.getRadius1());
         }
 
         @Test
         void arrays() {
-            assertEquals(4.0, parametersArrays.getRadius1());
+            assertEquals(4.0, parameters_arrays.getRadius1());
         }
     }
 
@@ -84,12 +84,12 @@ class ParametersTest {
     class radius2Tests {
         @Test
         void individual() {
-            assertEquals(5.0, parametersIndividual.getRadius2());
+            assertEquals(5.0, parameters_individual.getRadius2());
         }
 
         @Test
         void arrays() {
-            assertEquals(5.0, parametersArrays.getRadius2());
+            assertEquals(5.0, parameters_arrays.getRadius2());
         }
     }
 
@@ -98,12 +98,12 @@ class ParametersTest {
     class area1Tests {
         @Test
         void individual() {
-            assertEquals(6.0, parametersIndividual.getArea1());
+            assertEquals(6.0, parameters_individual.getArea1());
         }
 
         @Test
         void arrays() {
-            assertEquals(6.0, parametersArrays.getArea1());
+            assertEquals(6.0, parameters_arrays.getArea1());
         }
     }
 
@@ -112,12 +112,12 @@ class ParametersTest {
     class area2Tests {
         @Test
         void individual() {
-            assertEquals(7.0, parametersIndividual.getArea2());
+            assertEquals(7.0, parameters_individual.getArea2());
         }
 
         @Test
         void arrays() {
-            assertEquals(7.0, parametersArrays.getArea2());
+            assertEquals(7.0, parameters_arrays.getArea2());
         }
     }
 
@@ -126,12 +126,12 @@ class ParametersTest {
     class distTests {
         @Test
         void individual() {
-            assertEquals(8.0, parametersIndividual.getDist());
+            assertEquals(8.0, parameters_individual.getDist());
         }
 
         @Test
         void arrays() {
-            assertEquals(8.0, parametersArrays.getDist());
+            assertEquals(8.0, parameters_arrays.getDist());
         }
     }
 
@@ -140,12 +140,12 @@ class ParametersTest {
     class qPtsTests {
         @Test
         void individual() {
-            assertEquals(1, parametersIndividual.getqPts());
+            assertEquals(1, parameters_individual.getqPts());
         }
 
         @Test
         void arrays() {
-            assertEquals(1, parametersArrays.getqPts());
+            assertEquals(1, parameters_arrays.getqPts());
         }
     }
 
@@ -154,12 +154,12 @@ class ParametersTest {
     class quadsTests {
         @Test
         void individual() {
-            assertEquals(2, parametersIndividual.getQuads());
+            assertEquals(2, parameters_individual.getQuads());
         }
 
         @Test
         void arrays() {
-            assertEquals(2, parametersArrays.getQuads());
+            assertEquals(2, parameters_arrays.getQuads());
         }
     }
 
@@ -168,12 +168,12 @@ class ParametersTest {
     class nPtsTests {
         @Test
         void individual() {
-            assertEquals(3, parametersIndividual.getnPts());
+            assertEquals(3, parameters_individual.getnPts());
         }
 
         @Test
         void arrays() {
-            assertEquals(3, parametersArrays.getnPts());
+            assertEquals(3, parameters_arrays.getnPts());
         }
     }
 
@@ -182,12 +182,12 @@ class ParametersTest {
     class kPtsTests {
         @Test
         void individual() {
-            assertEquals(4, parametersIndividual.getkPts());
+            assertEquals(4, parameters_individual.getkPts());
         }
 
         @Test
         void arrays() {
-            assertEquals(4, parametersArrays.getkPts());
+            assertEquals(4, parameters_arrays.getkPts());
         }
     }
 
@@ -196,12 +196,12 @@ class ParametersTest {
     class aPtsTests {
         @Test
         void individual() {
-            assertEquals(5, parametersIndividual.getaPts());
+            assertEquals(5, parameters_individual.getaPts());
         }
 
         @Test
         void arrays() {
-            assertEquals(5, parametersArrays.getaPts());
+            assertEquals(5, parameters_arrays.getaPts());
         }
     }
 
@@ -210,12 +210,12 @@ class ParametersTest {
     class bPtsTests {
         @Test
         void individual() {
-            assertEquals(6, parametersIndividual.getbPts());
+            assertEquals(6, parameters_individual.getbPts());
         }
 
         @Test
         void arrays() {
-            assertEquals(6, parametersArrays.getbPts());
+            assertEquals(6, parameters_arrays.getbPts());
         }
     }
 
@@ -224,12 +224,12 @@ class ParametersTest {
     class cPtsTests {
         @Test
         void individual() {
-            assertEquals(7, parametersIndividual.getcPts());
+            assertEquals(7, parameters_individual.getcPts());
         }
 
         @Test
         void arrays() {
-            assertEquals(7, parametersArrays.getcPts());
+            assertEquals(7, parameters_arrays.getcPts());
         }
     }
 
@@ -238,12 +238,12 @@ class ParametersTest {
     class dPtsTests {
         @Test
         void individual() {
-            assertEquals(8, parametersIndividual.getdPts());
+            assertEquals(8, parameters_individual.getdPts());
         }
 
         @Test
         void arrays() {
-            assertEquals(8, parametersArrays.getdPts());
+            assertEquals(8, parameters_arrays.getdPts());
         }
     }
 
@@ -252,12 +252,12 @@ class ParametersTest {
     class ePtsTests {
         @Test
         void individual() {
-            assertEquals(9, parametersIndividual.getePts());
+            assertEquals(9, parameters_individual.getePts());
         }
 
         @Test
         void arrays() {
-            assertEquals(9, parametersArrays.getePts());
+            assertEquals(9, parameters_arrays.getePts());
         }
     }
 
@@ -266,12 +266,12 @@ class ParametersTest {
     class fPtsTests {
         @Test
         void individual() {
-            assertEquals(10, parametersIndividual.getfPts());
+            assertEquals(10, parameters_individual.getfPts());
         }
 
         @Test
         void arrays() {
-            assertEquals(10, parametersArrays.getfPts());
+            assertEquals(10, parameters_arrays.getfPts());
         }
     }
 
@@ -280,12 +280,12 @@ class ParametersTest {
     class gPtsTests {
         @Test
         void individual() {
-            assertEquals(11, parametersIndividual.getgPts());
+            assertEquals(11, parameters_individual.getgPts());
         }
 
         @Test
         void arrays() {
-            assertEquals(11, parametersArrays.getgPts());
+            assertEquals(11, parameters_arrays.getgPts());
         }
     }
 }
