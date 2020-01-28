@@ -41,5 +41,16 @@ class DecideProgramTest {
             e.printStackTrace();
         }
     }
+    
+    @Test
+    void programTestThree() {
+        try {
+            IOHandler io_handler = new IOHandler();
+            DecideProgram decide_program = io_handler.readTest("program_test_3.in");
+            assertTrue(decide_program.launch());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
