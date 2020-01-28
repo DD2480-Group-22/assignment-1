@@ -23,25 +23,26 @@ public class Parameters {
 
     /**
      * Initializes a newly created {@code Parameters} object, based on the input variables.
+     *
      * @param epsilon the epsilon value
      * @param length1 the lenght1 value
      * @param length2 the lenght2 value
      * @param radius1 the radius1 value
      * @param radius2 the radius2 value
-     * @param area1 the area1 value
-     * @param area2 the area2 value
-     * @param dist the dist value
-     * @param qPts the qPts value
-     * @param quads the quads value
-     * @param nPts the nPts value
-     * @param kPts the kPts value
-     * @param aPts the aPts value
-     * @param bPts the bPts value
-     * @param cPts the cPts value
-     * @param dPts the dPts value
-     * @param ePts the ePts value
-     * @param fPts the fPts value
-     * @param gPts the gPts value
+     * @param area1   the area1 value
+     * @param area2   the area2 value
+     * @param dist    the dist value
+     * @param qPts    the qPts value
+     * @param quads   the quads value
+     * @param nPts    the nPts value
+     * @param kPts    the kPts value
+     * @param aPts    the aPts value
+     * @param bPts    the bPts value
+     * @param cPts    the cPts value
+     * @param dPts    the dPts value
+     * @param ePts    the ePts value
+     * @param fPts    the fPts value
+     * @param gPts    the gPts value
      */
     public Parameters(double epsilon, double length1, double length2, double radius1, double radius2, double area1,
                       double area2, double dist, int qPts, int quads, int nPts, int kPts, int aPts, int bPts, int cPts,
@@ -71,8 +72,9 @@ public class Parameters {
      * Initializes a newly created {@code Parameters} object, based on the the two input arrays.
      * The {@code doubleParameters} contains all the values for the fields that are of type {@code double} and the
      * {@code intParameters} contains all the values for the fields that are of type {@code int}.
+     *
      * @param doubleParameters The {@code double} array
-     * @param intParameters The {@code int} array
+     * @param intParameters    The {@code int} array
      */
     public Parameters(double[] doubleParameters, int[] intParameters) {
         epsilon = doubleParameters[0];
@@ -99,6 +101,7 @@ public class Parameters {
 
     /**
      * Getter function for the epsilon field.
+     *
      * @return the value of epsilon
      */
     public double getEpsilon() {
@@ -107,6 +110,7 @@ public class Parameters {
 
     /**
      * Getter function for the length1 field.
+     *
      * @return the value of length1
      */
     public double getLength1() {
@@ -115,6 +119,7 @@ public class Parameters {
 
     /**
      * Getter function for the length2 field.
+     *
      * @return the value of length2
      */
     public double getLength2() {
@@ -123,6 +128,7 @@ public class Parameters {
 
     /**
      * Getter function for the radius1 field.
+     *
      * @return the value of radius1
      */
     public double getRadius1() {
@@ -131,6 +137,7 @@ public class Parameters {
 
     /**
      * Getter function for the radius1 field.
+     *
      * @return the value of radius1
      */
     public double getRadius2() {
@@ -139,6 +146,7 @@ public class Parameters {
 
     /**
      * Getter function for the area1 field.
+     *
      * @return the value of area1
      */
     public double getArea1() {
@@ -147,6 +155,7 @@ public class Parameters {
 
     /**
      * Getter function for the area2 field.
+     *
      * @return the value of area2
      */
     public double getArea2() {
@@ -155,6 +164,7 @@ public class Parameters {
 
     /**
      * Getter function for the qPts field.
+     *
      * @return the value of qPts
      */
     public int getqPts() {
@@ -163,6 +173,7 @@ public class Parameters {
 
     /**
      * Getter function for the quads field.
+     *
      * @return the value of quads
      */
     public int getQuads() {
@@ -171,6 +182,7 @@ public class Parameters {
 
     /**
      * Getter function for the dist field.
+     *
      * @return the value of dist
      */
     public double getDist() {
@@ -179,6 +191,7 @@ public class Parameters {
 
     /**
      * Getter function for the pts field.
+     *
      * @return the value of pts
      */
     public int getnPts() {
@@ -187,6 +200,7 @@ public class Parameters {
 
     /**
      * Getter function for the kPts field.
+     *
      * @return the value of kPts
      */
     public int getkPts() {
@@ -195,6 +209,7 @@ public class Parameters {
 
     /**
      * Getter function for the aPts field.
+     *
      * @return the value of aPts
      */
     public int getaPts() {
@@ -203,6 +218,7 @@ public class Parameters {
 
     /**
      * Getter function for the bPts field.
+     *
      * @return the value of bPts
      */
     public int getbPts() {
@@ -211,6 +227,7 @@ public class Parameters {
 
     /**
      * Getter function for the cPts field.
+     *
      * @return the value of cPts
      */
     public int getcPts() {
@@ -219,6 +236,7 @@ public class Parameters {
 
     /**
      * Getter function for the dPts field.
+     *
      * @return the value of dPts
      */
     public int getdPts() {
@@ -227,6 +245,7 @@ public class Parameters {
 
     /**
      * Getter function for the ePts field.
+     *
      * @return the value of ePts
      */
     public int getePts() {
@@ -235,6 +254,7 @@ public class Parameters {
 
     /**
      * Getter function for the fPts field.
+     *
      * @return the value of fPts
      */
     public int getfPts() {
@@ -243,6 +263,7 @@ public class Parameters {
 
     /**
      * Getter function for the gPts field.
+     *
      * @return the value of gPts
      */
     public int getgPts() {

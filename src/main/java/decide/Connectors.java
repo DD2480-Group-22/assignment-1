@@ -1,5 +1,5 @@
 package decide;
 
 public enum Connectors {
-    NOTUSED, ORR, ANDD;
+    NOTUSED, ORR, ANDD
 }
