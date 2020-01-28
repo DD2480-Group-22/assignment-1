@@ -329,52 +329,52 @@ public class DecideHelpFunctions {
      * @return {@code true} only if it satisfies the previous criteria, otherwise {@code false}
      */
     public static boolean conditionFunctionTen(int ePts, int fPts, double area1, Point2D[] coordinates) {
-    	Point2D a, b, c;
-    	double base, height, area;
-    	double side_1, side_2, side_3;
-    	
-    	if (coordinates.length < 5 || ePts < 1 || fPts < 1 || (ePts + fPts) > (coordinates.length - 3)) {
-    		return false;
-    	}
-    	
-    	for (int i = 0; i < coordinates.length - (ePts + fPts); i++) {
-    		a = coordinates[i];
-    		b = coordinates[i+ePts];
-    		c = coordinates[i+ePts+fPts];
-    		
-    		side_1 = a.distance(b);
-    		side_2 = a.distance(c);
-    		side_3 = b.distance(c);
-    		
-    		if (side_1 < side_2 && side_1 > side_3) {
-    			base = side_2;
-    			height = side_1 * Math.sin(MathHelper.getAngle(a, b, c));
-    		} else if (side_3 < side_2 && side_3 > side_1) {
-    			base = side_2;
-    			height = side_3 * Math.sin(MathHelper.getAngle(c, a, b));
-    		} else if (side_2 < side_3 && side_2 > side_1) {
-    			base = side_3;
-    			height = side_2 * Math.sin(MathHelper.getAngle(c, a, b));
-    		} else if (side_1 < side_3 && side_1 > side_2) {
-    			base = side_3;
-    			height = side_1 * Math.sin(MathHelper.getAngle(b, a, c));
-    		} else if (side_2 < side_1 && side_2 > side_3) {
-    			base = side_1;
-    			height = side_2 * Math.sin(MathHelper.getAngle(a, b, c));
-    		} else {
-    			base = side_1;
-    			height = side_3 * Math.sin(MathHelper.getAngle(b, a, c));
-    		}
-    		
-    		area = base * height / 2;
-    				
-    		if (area > area1 && !MathHelper.equal(area, area1)) {
-    			return true;
-    		}
-    				
-    	}
-    	
-    	return false;
+        Point2D a, b, c;
+        double base, height, area;
+        double side_1, side_2, side_3;
+
+        if (coordinates.length < 5 || ePts < 1 || fPts < 1 || (ePts + fPts) > (coordinates.length - 3)) {
+            return false;
+        }
+
+        for (int i = 0; i < coordinates.length - (ePts + fPts); i++) {
+            a = coordinates[i];
+            b = coordinates[i + ePts];
+            c = coordinates[i + ePts + fPts];
+
+            side_1 = a.distance(b);
+            side_2 = a.distance(c);
+            side_3 = b.distance(c);
+
+            if (side_1 < side_2 && side_1 > side_3) {
+                base = side_2;
+                height = side_1 * Math.sin(MathHelper.getAngle(a, b, c));
+            } else if (side_3 < side_2 && side_3 > side_1) {
+                base = side_2;
+                height = side_3 * Math.sin(MathHelper.getAngle(c, a, b));
+            } else if (side_2 < side_3 && side_2 > side_1) {
+                base = side_3;
+                height = side_2 * Math.sin(MathHelper.getAngle(c, a, b));
+            } else if (side_1 < side_3 && side_1 > side_2) {
+                base = side_3;
+                height = side_1 * Math.sin(MathHelper.getAngle(b, a, c));
+            } else if (side_2 < side_1 && side_2 > side_3) {
+                base = side_1;
+                height = side_2 * Math.sin(MathHelper.getAngle(a, b, c));
+            } else {
+                base = side_1;
+                height = side_3 * Math.sin(MathHelper.getAngle(b, a, c));
+            }
+
+            area = base * height / 2;
+
+            if (area > area1 && !MathHelper.equal(area, area1)) {
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
     /**
