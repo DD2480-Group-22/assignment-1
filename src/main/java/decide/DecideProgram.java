@@ -66,11 +66,11 @@ public class DecideProgram {
                 DecideHelpFunctions.conditionFunctionSix(parameters.getnPts(), parameters.getDist(), coordinates),
                 DecideHelpFunctions.conditionFunctionSeven(parameters.getkPts(), parameters.getLength1(), coordinates),
                 DecideHelpFunctions.conditionFunctionEight(parameters.getaPts(), parameters.getbPts(), numPoints, parameters.getRadius1(), coordinates),
-                DecideHelpFunctions.conditionFunctionNine(parameters.getcPts(), parameters.getdPts(), parameters.getEpsilon(), coordinates),
+                DecideHelpFunctions.conditionFunctionNine(parameters.getcPts(), parameters.getdPts(), numPoints, parameters.getEpsilon(), coordinates),
                 DecideHelpFunctions.conditionFunctionTen(parameters.getePts(), parameters.getfPts(), parameters.getArea1(), coordinates),
-                DecideHelpFunctions.conditionFunctionEleven(parameters.getgPts(), coordinates),
+                DecideHelpFunctions.conditionFunctionEleven(parameters.getgPts(), numPoints, coordinates),
                 DecideHelpFunctions.conditionFunctionTwelve(parameters.getkPts(), parameters.getLength1(), parameters.getLength2(), coordinates),
-                DecideHelpFunctions.conditionFunctionThirteen(parameters.getaPts(), parameters.getbPts(), parameters.getRadius1(), parameters.getRadius2(), coordinates),
+                DecideHelpFunctions.conditionFunctionThirteen(parameters.getaPts(), parameters.getbPts(), numPoints, parameters.getRadius1(), parameters.getRadius2(), coordinates),
                 DecideHelpFunctions.conditionFunctionFourteen(parameters.getePts(), parameters.getfPts(), parameters.getArea1(), parameters.getArea2(), coordinates)
         };
     }
