@@ -1,2 +1,3 @@
 ignore:
   - "src/main/java/decide/Connectors.java"
+  - "src/main/java/Main.java"
