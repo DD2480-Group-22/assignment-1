@@ -13,7 +13,7 @@ class DecideProgramTest {
     void launchConfigFile() {
         try {
             IOHandler ioHandler = new IOHandler();
-            DecideProgram decideProgram = ioHandler.readTest("test_1.in");
+            DecideProgram decideProgram = ioHandler.readTest("program_test_4.in");
             assertTrue(decideProgram.launch());
         } catch (IOException e) {
             e.printStackTrace();

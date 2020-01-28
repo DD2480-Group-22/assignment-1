@@ -33,7 +33,7 @@ class IOHandlerTest {
     @Test
     @DisplayName("Check that IOHandler creates a DecideProgram object when given a correct config file")
     void correctType() {
-        String fileName = "test_1.in";
+        String fileName = "program_test_4.in";
         IOHandler ioHandler = new IOHandler();
 
         assertDoesNotThrow(() -> {

@@ -18,7 +18,20 @@ Group members:
 
 ### How to run the program
 1. Compile the project: `mvn compile`
-2. Run the program: `mvn exec:java -Dexec.mainClass=Main `
+2. Run the program: `mvn exec:java -Dexec.mainClass=Main`
+
+You can suppress the Maven output by running the the program with the `-q` flag. The command then becomes:
+
+`mvn exec:java -Dexec.mainClass=Main -q`
+
+#### Specify test file
+If you want to run a specific test from the resources folder you can specify it by passing an application argument
+using the `-Dexec.args` flag. Valid arguments are the numbers of the test file (program_test_#), you can specify more 
+than one file at a time.
+
+Example run test file 1 and 3:
+
+`mvn exec:java -Dexec.mainClass=Main -Dexec.args="1 3" `
 
 ### How to test the program
 1. Compile the project: `mvn compile`
