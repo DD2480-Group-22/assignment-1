@@ -815,7 +815,7 @@ class DecideHelpFunctionsTest {
                     new Point2D.Double(0.0, 0.0), new Point2D.Double(0.0, 0.0),
                     new Point2D.Double(2.0, 0.0)
             };
-            assertTrue(DecideHelpFunctions.conditionFunctionThirteen(2, 1, 13, 0.1, 0.9, array));
+            assertTrue(DecideHelpFunctions.conditionFunctionThirteen(2, 1, 13, 0.1, 30.9, array));
         }
 
         @Test
