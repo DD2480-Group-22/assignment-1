@@ -754,7 +754,7 @@ class DecideHelpFunctionsTest {
         }
     	
     	@Test
-        @DisplayName("Basic test for three data points with only 1 point between each")
+        @DisplayName("Test on a long array where all except one point is on the X axis")
         void longArray() {
             Point2D[] array = new Point2D[20];
             
@@ -764,8 +764,6 @@ class DecideHelpFunctionsTest {
             
             array[15].setLocation(15.0, 10.0);
             
-            System.out.println("Current test");
-            
             assertTrue(DecideHelpFunctions.conditionFunctionFourteen(3, 3, 25, 30, array));
             assertTrue(DecideHelpFunctions.conditionFunctionFourteen(3, 3, 39, 21, array));
             assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 30, 35, array));
@@ -773,6 +771,32 @@ class DecideHelpFunctionsTest {
             assertFalse(DecideHelpFunctions.conditionFunctionFourteen(2, 2, 40, 20, array));
         }
     	
+    	@Test
+        @DisplayName("Test on an array with too large intervals")
+        void tooLargeIntervals() {
+            Point2D[] array = new Point2D[6];
+            
+            for(int i = 0; i < 6; ++i) {
+            	array[i] = new Point2D.Double(i, i * Math.pow(-1, i));
+            }
+            
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(4, 4, 5, 40, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(3, 1, 5, 40, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 3, 5, 40, array));
+        }
     	
+    	@Test
+        @DisplayName("Test on an array with less than five elements")
+        void tooShortArray() {
+            Point2D[] array = new Point2D[4];
+            
+            for(int i = 0; i < 4; ++i) {
+            	array[i] = new Point2D.Double(i, i * Math.pow(-1, i));
+            }
+            
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 1, 40, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(1, 1, 1, 40, array));
+            assertFalse(DecideHelpFunctions.conditionFunctionFourteen(0, 0, 1, 40, array));
+        }
     }
 }
