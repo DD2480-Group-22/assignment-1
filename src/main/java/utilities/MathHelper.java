@@ -66,16 +66,15 @@ public class MathHelper {
     }
 
     /**
-     * Checks if two coordinates should be considered to represent the same point. The precision is set to
-     * {@code EPSILON}
+     * Checks if two coordinates should be considered to represent the same point.
+     *
      * @param pointA A coordinate
      * @param pointB A coordinate
      * @return {@code true} if the difference between both coordinates are less then {@code EPSILON},
-     *         otherwise {@code false}
+     * otherwise {@code false}
      */
     public static boolean equalityCheckCoordinates(Point2D pointA, Point2D pointB) {
-        return Math.abs(pointA.getX() - pointB.getX()) < EPSILON &&
-                Math.abs(pointA.getY() - pointB.getY()) < EPSILON;
+        return equal(pointA.getX(), pointB.getX()) && equal(pointA.getY(), pointB.getY());
     }
     
     /**
