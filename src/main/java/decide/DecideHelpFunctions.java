@@ -368,7 +368,7 @@ public class DecideHelpFunctions {
 
             area = base * height / 2;
 
-            if (area > area1) {
+            if (area > area1 && !MathHelper.equal(area, area1)) {
                 return true;
             }
 
