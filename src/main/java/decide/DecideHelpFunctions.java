@@ -282,10 +282,9 @@ public class DecideHelpFunctions {
     public static boolean conditionFunctionEight(int aPts, int bPts, int nrPoints, double radius1, Point2D[] coordinates) {
         if ((aPts < 1) || (bPts < 1) || (nrPoints < (aPts + bPts + 3))) return false;
         for (int i = 0; i < (coordinates.length - aPts - bPts - 2); i++) {
-            if (Math.max(Math.max(coordinates[i].distance(coordinates[i + aPts + 1]), coordinates[i].distance(coordinates[i + aPts + bPts + 2])),
-                    coordinates[i + bPts + 1].distance(coordinates[i + aPts + 1])) > (2 * radius1))
-                return true;
-        }
+            Point2D[] set = {coordinates[i], coordinates[i+aPts+1], coordinates[i+aPts+bPts+2]};
+            if(conditionFunctionOne(radius1, set)) return true;
+            }
         return false;
     }
 
@@ -447,20 +446,17 @@ public class DecideHelpFunctions {
      * @param radius1     First ardius of the circle that has to contain all 3 points
      * @param radius2     Second radius of the circle that has to contain all 3 points
      * @param coordinates The data points
-     * @return {@code true} if there exists a set of 3 points that meet the requirements, otherwise {@code false}
+     * @return {@code true} if there exists a set of 3 points that meet each of the requirements, otherwise {@code false}
      */
     public static boolean conditionFunctionThirteen(int aPts, int bPts, int nrPoints, double radius1, double radius2, Point2D[] coordinates) {
         if ((aPts < 1) || (bPts < 1) || (nrPoints < (aPts + bPts + 3))) return false;
-        boolean firstCondition = false;
-        boolean secondCondition = false;
+        boolean first_condition = false;
+        boolean second_condition = false;
         for (int i = 0; i < (coordinates.length - aPts - bPts - 2); i++) {
-            if (Math.max(Math.max(coordinates[i].distance(coordinates[i + aPts + 1]), coordinates[i].distance(coordinates[i + aPts + bPts + 2])),
-                    coordinates[i + bPts + 1].distance(coordinates[i + aPts + 1])) > (2 * radius1))
-                firstCondition = true;
-            if (Math.max(Math.max(coordinates[i].distance(coordinates[i + aPts + 1]), coordinates[i].distance(coordinates[i + aPts + bPts + 2])),
-                    coordinates[i + bPts + 1].distance(coordinates[i + aPts + 1])) < (2 * radius2))
-                secondCondition = true;
-            if (firstCondition && secondCondition) return true;
+            Point2D[] set = {coordinates[i], coordinates[i+aPts+1], coordinates[i+aPts+bPts+2]};
+            if(conditionFunctionOne(radius1, set)) first_condition = true;
+            if(!conditionFunctionOne(radius2, set)) second_condition = true;
+            if (first_condition && second_condition) return true;
 
         }
         return false;
