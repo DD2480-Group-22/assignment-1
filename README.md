@@ -4,13 +4,16 @@
 # Assignment 1: Decide
 This repository contains the code and documentation for assignment 1 _Decide_, written by group 22. The assignment is part of the course DD2480 Software Engineering Fundamentals.
 
-### Group members:
+## Program description
+The Decide program is a part of a hypothetical anti-ballistic missile system, and determines whether an interceptor should be launched based upon the inputed radar tracking information. The program only allows a launch if all the requirments set in the configuration files are meet. 
+
+## Group members:
 * Erik Svensson
 * Felipe Ignacio Vicencio Neumann
 * Nils Streijffert
 * Pablo Javier Aravena Núñez
 
-#### Statement of contributions
+### Statement of contributions
 ##### Erik Svensson
 * Converted the original code skeleton from C to Java
 * Wrote the third test case for the Decide program
@@ -73,6 +76,6 @@ The first line is a integer `N` (`3 <= N <= 100`) and defines the number of data
 coordinates which are pairs of doubles. After the coordinates there are eight rows of doubles which represent the 
 following parameters: `epsilon`,  `length1`,  `length2`, `radius1`, `radius2`, `area1`, `area2`, `dist`. Then there is 
 eleven rows of integers which represent the parameters: `qPts`, `quads`,`nPts`, `kPts`, `aPts`, `bPts`, `cPts`, `dPts`, 
-`ePts`, `fPts`, `gPts`. After the parameters there is fifteen rows of fifteen space separated Strings with either of 
-the values `ANND`, `NOTUSED` or `ORR`, these rows form the _Logical Connector Matrix_. The final fifteen rows of the
-file are boolean values either `true` or `false`, these values form the _Preliminary Unlocking Vector_.
+`ePts`, `fPts`, `gPts`. After the parameters there is fifteen rows of fifteen space separated Strings (only one space between each String) with either of the values `ANND`, `NOTUSED` or `ORR`, these rows form the _Logical Connector Matrix_. The final fifteen rows of the file are boolean values either `true` or `false`, these values form the _Preliminary Unlocking Vector_.
+
+**Example:** [Config file](src/main/resources/program_test_1.in)
