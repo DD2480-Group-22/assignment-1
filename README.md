@@ -4,12 +4,35 @@
 # Assignment 1: Decide
 This repository contains the code and documentation for assignment 1 _Decide_, written by group 22. The assignment is part of the course DD2480 Software Engineering Fundamentals.
 
-Group members:
+### Group members:
 * Erik Svensson
 * Felipe Ignacio Vicencio Neumann
-* ~~Mikel Zhobro~~
 * Nils Streijffert
 * Pablo Javier Aravena Núñez
+
+#### Statement of contributions
+##### Erik Svensson
+* Converted the original code skeleton from C to Java
+* Wrote the third test case for the Decide program
+* Implemented _Launch Interceptor Conditions_ 0, 1, 3 and 14
+
+##### Felipe Ignacio Vicencio Neumann
+* Implemented _Launch Interceptor Conditions_ 2, 5, 8, 9, 11 and 13
+
+##### Nils Streijffert
+* Implemented _Launch Interceptor Conditions_ 6 and 7
+* Wrote the `IOHandler`, `Parameters` and `Connectors` classes
+* Implemented the `DecideProgram` class
+* Setup the Maven project
+* Setup Travis
+* Setup CodeCov
+* Setup JavaDoc
+* Setup JUnit
+* Wrote documentation
+
+#### Pablo Javier Aravena Núñez
+* Implemented _Launch Interceptor Conditions_ 4, 10 and 12
+* Added the Travis bot to Slack
 
 ## Running the program
 ### Requirements
@@ -29,7 +52,7 @@ If you want to run a specific test from the resources folder you can specify it 
 using the `-Dexec.args` flag. Valid arguments are the numbers of the test file (program_test_#), you can specify more 
 than one file at a time.
 
-Example run test file 1 and 3:
+**Example run test file 1 and 3:**
 
 `mvn exec:java -Dexec.mainClass=Main -Dexec.args="1 3" `
 
